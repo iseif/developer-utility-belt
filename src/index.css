@@ -1,0 +1,12 @@
+html,
+body,
+#root {
+  /* Assuming your root div in index.html has id="root" */
+  height: 100%;
+  margin: 0; /* Optional: Ensure no default margins */
+  padding: 0; /* Optional: Ensure no default padding */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
