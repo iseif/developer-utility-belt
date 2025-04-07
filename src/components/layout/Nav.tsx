@@ -12,6 +12,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
     { name: 'Diff Checker', path: '/diff' },
     { name: 'Timestamp Converter', path: '/timestamp' },
     { name: 'URL Encoder/Decoder', path: '/url-encode-decode' },
+    { name: 'Base64 Encoder/Decoder', path: '/base64-encode-decode' },
   ];
 
   return (
