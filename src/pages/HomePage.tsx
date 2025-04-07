@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -57,6 +57,14 @@ const HomePage: React.FC = () => {
         path: '/user-agent-parser',
         description: 'Parse and analyze User Agent strings to extract browser and OS information.',
         icon: <FaSearch className="align-middle" />,
+      },
+    ],
+    'Graphics & Design': [
+      {
+        name: 'Color Tools',
+        path: '/color-tools',
+        description: 'Color picker, format converter, and contrast checker for web accessibility.',
+        icon: <FaPalette className="align-middle" />,
       },
     ],
   };

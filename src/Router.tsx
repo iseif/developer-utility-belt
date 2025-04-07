@@ -13,6 +13,7 @@ import HtmlEntityEncoderDecoderPage from './pages/HtmlEntityEncoderDecoderPage';
 import JwtDebuggerPage from './pages/JwtDebuggerPage';
 import IpInfoPage from './pages/IpInfoPage';
 import UserAgentParserPage from './pages/UserAgentParserPage';
+import ColorToolsPage from './pages/ColorToolsPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const AppRouter: React.FC = () => {
       <Route path="/jwt-debugger" element={<JwtDebuggerPage />} />
       <Route path="/ip-info" element={<IpInfoPage />} />
       <Route path="/user-agent-parser" element={<UserAgentParserPage />} />
+      <Route path="/color-tools" element={<ColorToolsPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

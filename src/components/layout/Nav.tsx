@@ -17,6 +17,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
     { name: 'JWT Debugger', path: '/jwt-debugger' },
     { name: 'IP Address Info', path: '/ip-info' },
     { name: 'User Agent Parser', path: '/user-agent-parser' },
+    { name: 'Color Tools', path: '/color-tools' },
   ];
 
   return (
