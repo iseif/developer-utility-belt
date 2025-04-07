@@ -73,7 +73,6 @@ const CodeMinifierPage: React.FC = () => {
       </header>
 
       <div className="space-y-6">
-        {/* Controls Section */}
         <section className="space-y-3 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
           <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
             Code Minifier
@@ -99,81 +98,80 @@ const CodeMinifierPage: React.FC = () => {
 
             <button
               onClick={handleMinify}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+              className="px-4 py-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
             >
               Minify
             </button>
           </div>
-        </section>
 
-        {/* Input/Output Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Input */}
-          <div>
-            <div className="flex justify-between items-center mb-1 min-h-[36px]">
-              <label
-                htmlFor="input-code"
-                className="font-semibold dark:text-dark-primary-text"
-              >
-                Input:
-              </label>
-              <span></span>
+          {/* Error Display */}
+          {error && (
+            <div className="p-3 border-2 border-red-500 dark:border-red-400 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 mb-4">
+              <p className="font-semibold">Error:</p>
+              <p>{error}</p>
             </div>
-            <textarea
-              id="input-code"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder={`Enter your ${language} code here...`}
-              className="w-full h-96 p-2 font-mono text-sm border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text shadow-inner"
-              spellCheck="false"
-            />
-          </div>
+          )}
 
-          {/* Output */}
-          <div>
-            <div className="flex justify-between items-center mb-1 min-h-[36px]">
-              <label
-                htmlFor="output-code"
-                className="font-semibold dark:text-dark-primary-text"
-              >
-                Output:
-              </label>
-              {output && (
+          {/* Input/Output Text Areas */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Input */}
+            <div>
+              <div className="flex justify-between items-center mb-1 min-h-[36px]">
+                <label
+                  htmlFor="input-code"
+                  className="font-semibold dark:text-dark-primary-text"
+                >
+                  Input:
+                </label>
+                <span></span>
+              </div>
+              <textarea
+                id="input-code"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder={`Enter your ${language} code here...`}
+                className="w-full h-96 p-2 font-mono text-sm border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text shadow-inner"
+                spellCheck="false"
+              />
+            </div>
+
+            {/* Output */}
+            <div>
+              <div className="flex justify-between items-center mb-1 min-h-[36px]">
+                <label
+                  htmlFor="output-code"
+                  className="font-semibold dark:text-dark-primary-text"
+                >
+                  Output:
+                </label>
                 <button
                   onClick={handleCopy}
-                  className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
+                  disabled={!output}
+                  className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Copy
                 </button>
+              </div>
+              <textarea
+                id="output-code"
+                value={output}
+                readOnly
+                placeholder="Minified code will appear here..."
+                className="w-full h-96 p-2 font-mono text-sm border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text shadow-inner"
+              />
+              {stats && (
+                <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1 mt-2">
+                  <p>Original size: {formatSize(stats.original)}</p>
+                  <p>Minified size: {formatSize(stats.minified)}</p>
+                  <p>
+                    Reduction:{' '}
+                    {((1 - stats.minified / stats.original) * 100).toFixed(1)}%
+                  </p>
+                </div>
               )}
             </div>
-            {error ? (
-              <div className="p-4 border-2 border-red-500 bg-red-50 dark:bg-red-900 text-red-700 dark:text-red-100">
-                {error}
-              </div>
-            ) : (
-              <>
-                <textarea
-                  id="output-code"
-                  value={output}
-                  readOnly
-                  placeholder="Minified code will appear here..."
-                  className="w-full h-96 p-2 font-mono text-sm border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text shadow-inner"
-                />
-                {stats && (
-                  <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                    <p>Original size: {formatSize(stats.original)}</p>
-                    <p>Minified size: {formatSize(stats.minified)}</p>
-                    <p>
-                      Reduction:{' '}
-                      {((1 - stats.minified / stats.original) * 100).toFixed(1)}%
-                    </p>
-                  </div>
-                )}
-              </>
-            )}
           </div>
-        </div>
+        </section>
 
         {/* Information Section */}
         <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">

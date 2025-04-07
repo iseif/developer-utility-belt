@@ -31,6 +31,12 @@ const HomePage: React.FC = () => {
         icon: <FaTable className="align-middle" />,
       },
       {
+        name: 'JSON <-> CSV Converter',
+        path: '/json-csv-converter',
+        description: 'Convert between JSON arrays and CSV data formats with ease.',
+        icon: <FaExchangeAlt className="align-middle" />,
+      },
+      {
         name: 'Diff Checker',
         path: '/diff',
         description: 'Compare two text blocks and highlight the differences between them.',

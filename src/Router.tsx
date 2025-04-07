@@ -19,6 +19,7 @@ import CaseConverterPage from './pages/CaseConverterPage';
 import LineToolsPage from './pages/LineToolsPage';
 import TextCounterPage from './pages/TextCounterPage';
 import CsvViewerPage from './pages/CsvViewerPage';
+import JsonCsvConverterPage from './pages/JsonCsvConverterPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -40,6 +41,7 @@ const AppRouter: React.FC = () => {
       <Route path="/line-tools" element={<LineToolsPage />} />
       <Route path="/counter" element={<TextCounterPage />} />
       <Route path="/csv-viewer" element={<CsvViewerPage />} />
+      <Route path="/json-csv-converter" element={<JsonCsvConverterPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />
