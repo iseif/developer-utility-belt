@@ -15,6 +15,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
     { name: 'URL Encoder/Decoder', path: '/url-encode-decode' },
     { name: 'Base64 Encoder/Decoder', path: '/base64-encode-decode' },
     { name: 'HTML Entity Encoder/Decoder', path: '/html-entity-encode-decode' },
+    { name: 'Case Converter', path: '/case-converter' },
     { name: 'JWT Debugger', path: '/jwt-debugger' },
     { name: 'IP Address Info', path: '/ip-info' },
     { name: 'User Agent Parser', path: '/user-agent-parser' },

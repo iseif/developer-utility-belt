@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -30,13 +30,31 @@ const HomePage: React.FC = () => {
         description: 'Compare two text blocks and highlight the differences between them.',
         icon: <FaBalanceScale className="align-middle" />,
       },
+      {
+        name: 'Case Converter',
+        path: '/case-converter',
+        description: 'Convert text between various case formats like camelCase, PascalCase, snake_case, etc.',
+        icon: <FaFont className="align-middle" />,
+      },
     ],
     'Encoding & Conversion': [
       {
         name: 'URL Encoder/Decoder',
-        path: '/url-encoder-decoder',
+        path: '/url-encode-decode',
         description: 'Encode or decode URLs and query parameters for web applications.',
         icon: <FaLink className="align-middle" />,
+      },
+      {
+        name: 'Base64 Encoder/Decoder',
+        path: '/base64-encode-decode',
+        description: 'Encode or decode data to and from Base64 format.',
+        icon: <FaExchangeAlt className="align-middle" />,
+      },
+      {
+        name: 'HTML Entity Encoder/Decoder',
+        path: '/html-entity-encode-decode',
+        description: 'Convert special characters to and from HTML entities.',
+        icon: <FaCode className="align-middle" />,
       },
       {
         name: 'Timestamp Converter',

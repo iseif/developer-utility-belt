@@ -15,6 +15,7 @@ import IpInfoPage from './pages/IpInfoPage';
 import UserAgentParserPage from './pages/UserAgentParserPage';
 import ColorToolsPage from './pages/ColorToolsPage';
 import CodeMinifierPage from './pages/CodeMinifierPage';
+import CaseConverterPage from './pages/CaseConverterPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const AppRouter: React.FC = () => {
       <Route path="/user-agent-parser" element={<UserAgentParserPage />} />
       <Route path="/color-tools" element={<ColorToolsPage />} />
       <Route path="/minifier" element={<CodeMinifierPage />} />
+      <Route path="/case-converter" element={<CaseConverterPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />
