@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -9,19 +10,19 @@ const HomePage: React.FC = () => {
         name: 'Code Formatter',
         path: '/formatter',
         description: 'Beautify and format your code with proper indentation and syntax.',
-        icon: '📝',
+        icon: <FaEdit className="align-middle" />,
       },
       {
         name: 'JSON Tools',
         path: '/json-tools',
         description: 'Validate, view, and format JSON data with tree visualization.',
-        icon: '🔍',
+        icon: <FaSearch className="align-middle" />,
       },
       {
         name: 'Diff Checker',
         path: '/diff',
         description: 'Compare two text blocks and highlight the differences between them.',
-        icon: '⚖️',
+        icon: <FaBalanceScale className="align-middle" />,
       },
     ],
     'Encoding & Conversion': [
@@ -29,19 +30,19 @@ const HomePage: React.FC = () => {
         name: 'URL Encoder/Decoder',
         path: '/url-encoder-decoder',
         description: 'Encode or decode URLs and query parameters for web applications.',
-        icon: '🔗',
+        icon: <FaLink className="align-middle" />,
       },
       {
         name: 'Timestamp Converter',
         path: '/timestamp',
         description: 'Convert between Unix timestamps and human-readable date formats.',
-        icon: '🕒',
+        icon: <FaClock className="align-middle" />,
       },
       {
         name: 'JWT Debugger',
         path: '/jwt-debugger',
         description: 'Decode and inspect JSON Web Tokens to verify their contents.',
-        icon: '🔐',
+        icon: <FaLock className="align-middle" />,
       },
     ],
     'Network & Info': [
@@ -49,13 +50,13 @@ const HomePage: React.FC = () => {
         name: 'IP Address Info',
         path: '/ip-info',
         description: 'Get details about your public IP address and geolocation data.',
-        icon: '🌐',
+        icon: <FaGlobe className="align-middle" />,
       },
       {
         name: 'User Agent Parser',
         path: '/user-agent-parser',
         description: 'Parse and analyze User Agent strings to extract browser and OS information.',
-        icon: '🔍',
+        icon: <FaSearch className="align-middle" />,
       },
     ],
   };
@@ -77,7 +78,7 @@ const HomePage: React.FC = () => {
       {/* Quick Start Guide */}
       <section className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
         <h2 className="text-xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 mb-4 dark:text-dark-primary-text">
-          🚀 Getting Started
+          <FaRocket className="inline-block align-middle mr-2" /> Getting Started
         </h2>
         <div className="text-primary-text dark:text-dark-primary-text space-y-2">
           <p>
@@ -106,7 +107,7 @@ const HomePage: React.FC = () => {
                   className="group block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out"
                 >
                   <div className="flex items-start">
-                    <span className="text-2xl mr-3 group-hover:scale-110 transition-transform duration-150">{tool.icon}</span>
+                    <span className="text-2xl mr-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-150">{tool.icon}</span>
                     <div>
                       <h3 className="text-xl font-bold mb-1 text-primary-text dark:text-dark-primary-text">
                         {tool.name}
@@ -126,7 +127,7 @@ const HomePage: React.FC = () => {
       {/* About Section */}
       <section className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid mt-8">
         <h2 className="text-xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 mb-4 dark:text-dark-primary-text">
-          ℹ️ About This Project
+          <span className="inline-flex items-center"><FaInfoCircle className="inline-block align-middle mr-2" /> About This Project</span>
         </h2>
         <div className="text-primary-text dark:text-dark-primary-text space-y-2">
           <p>
