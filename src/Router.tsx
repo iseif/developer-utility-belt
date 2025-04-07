@@ -14,6 +14,7 @@ import JwtDebuggerPage from './pages/JwtDebuggerPage';
 import IpInfoPage from './pages/IpInfoPage';
 import UserAgentParserPage from './pages/UserAgentParserPage';
 import ColorToolsPage from './pages/ColorToolsPage';
+import CodeMinifierPage from './pages/CodeMinifierPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const AppRouter: React.FC = () => {
       <Route path="/ip-info" element={<IpInfoPage />} />
       <Route path="/user-agent-parser" element={<UserAgentParserPage />} />
       <Route path="/color-tools" element={<ColorToolsPage />} />
+      <Route path="/minifier" element={<CodeMinifierPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

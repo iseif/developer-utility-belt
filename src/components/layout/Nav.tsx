@@ -8,6 +8,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Code Formatter', path: '/formatter' },
+    { name: 'Code Minifier', path: '/minifier' },
     { name: 'JSON Tools', path: '/json-tools' },
     { name: 'Diff Checker', path: '/diff' },
     { name: 'Timestamp Converter', path: '/timestamp' },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -11,6 +11,12 @@ const HomePage: React.FC = () => {
         path: '/formatter',
         description: 'Beautify and format your code with proper indentation and syntax.',
         icon: <FaEdit className="align-middle" />,
+      },
+      {
+        name: 'Code Minifier',
+        path: '/minifier',
+        description: 'Minify JavaScript and CSS code to reduce file size for production.',
+        icon: <FaCompress className="align-middle" />,
       },
       {
         name: 'JSON Tools',
