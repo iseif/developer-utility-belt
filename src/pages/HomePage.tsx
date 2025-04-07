@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode, FaSortAlphaDown, FaCalculator } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode, FaSortAlphaDown, FaCalculator, FaTable } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -23,6 +23,12 @@ const HomePage: React.FC = () => {
         path: '/json-tools',
         description: 'Validate, view, and format JSON data with tree visualization.',
         icon: <FaSearch className="align-middle" />,
+      },
+      {
+        name: 'CSV Viewer',
+        path: '/csv-viewer',
+        description: 'Parse CSV data and display it in a structured table format with pagination.',
+        icon: <FaTable className="align-middle" />,
       },
       {
         name: 'Diff Checker',

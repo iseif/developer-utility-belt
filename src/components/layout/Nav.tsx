@@ -36,6 +36,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
         { name: 'Code Formatter', path: '/formatter' },
         { name: 'Code Minifier', path: '/minifier' },
         { name: 'JSON Tools', path: '/json-tools' },
+        { name: 'CSV Viewer', path: '/csv-viewer' },
         { name: 'Diff Checker', path: '/diff' },
         { name: 'Case Converter', path: '/case-converter' },
         { name: 'Line Sorter', path: '/line-tools' },
