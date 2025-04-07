@@ -21,6 +21,7 @@ import TextCounterPage from './pages/TextCounterPage';
 import CsvViewerPage from './pages/CsvViewerPage';
 import JsonCsvConverterPage from './pages/JsonCsvConverterPage';
 import DataGeneratorPage from './pages/DataGeneratorPage';
+import GradientGeneratorPage from './pages/GradientGeneratorPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -44,6 +45,7 @@ const AppRouter: React.FC = () => {
       <Route path="/csv-viewer" element={<CsvViewerPage />} />
       <Route path="/json-csv-converter" element={<JsonCsvConverterPage />} />
       <Route path="/data-generator" element={<DataGeneratorPage />} />
+      <Route path="/gradient-generator" element={<GradientGeneratorPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

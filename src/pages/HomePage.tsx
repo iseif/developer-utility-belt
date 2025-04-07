@@ -120,6 +120,12 @@ const HomePage: React.FC = () => {
         description: 'Color picker, format converter, and contrast checker for web accessibility.',
         icon: <FaPalette className="align-middle" />,
       },
+      {
+        name: 'Gradient Generator',
+        path: '/gradient-generator',
+        description: 'Create beautiful CSS gradients with a visual editor for your web projects.',
+        icon: <FaPalette className="align-middle" />,
+      },
     ],
   };
 
