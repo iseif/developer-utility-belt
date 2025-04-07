@@ -11,6 +11,7 @@ import UrlEncoderDecoderPage from './pages/UrlEncoderDecoderPage';
 import Base64EncoderDecoderPage from './pages/Base64EncoderDecoderPage';
 import HtmlEntityEncoderDecoderPage from './pages/HtmlEntityEncoderDecoderPage';
 import JwtDebuggerPage from './pages/JwtDebuggerPage';
+import IpInfoPage from './pages/IpInfoPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const AppRouter: React.FC = () => {
       <Route path="/base64-encode-decode" element={<Base64EncoderDecoderPage />} />
       <Route path="/html-entity-encode-decode" element={<HtmlEntityEncoderDecoderPage />} />
       <Route path="/jwt-debugger" element={<JwtDebuggerPage />} />
+      <Route path="/ip-info" element={<IpInfoPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

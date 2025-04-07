@@ -70,97 +70,109 @@ const CodeFormatterPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4 dark:text-dark-primary-text">
-        Code Formatter
-      </h2>
-      <div className="mb-4 flex flex-wrap items-center gap-x-6 gap-y-2">
-        <div className="flex items-center gap-2">
-          <label
-            htmlFor="language-select"
-            className="font-semibold dark:text-dark-primary-text"
-          >
-            Language:
-          </label>
-          <select
-            id="language-select"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-            disabled={isFormatting}
-            className="p-2 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text shadow-solid dark:shadow-dark-solid disabled:opacity-50"
-          >
-            <option value="json">JSON</option>
-            <option value="javascript">JavaScript</option>
-          </select>
-        </div>
+    <div className="p-4 space-y-8">
+      <header>
+        <h1 className="text-2xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 mb-4 dark:text-dark-primary-text">
+          Code Formatter
+        </h1>
+        <p className="mb-6 text-gray-700 dark:text-gray-300">
+          Format and beautify your code with proper indentation and consistent style. Currently supports JSON and JavaScript formatting.
+        </p>
+      </header>
+      <div className="space-y-6">
+        <section className="space-y-3 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+          <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
+            Code Formatter
+          </h3>
+          <div className="mb-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div className="flex items-center gap-2">
+              <label
+                htmlFor="language-select"
+                className="font-semibold dark:text-dark-primary-text"
+              >
+                Language:
+              </label>
+              <select
+                id="language-select"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                disabled={isFormatting}
+                className="p-2 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text shadow-solid dark:shadow-dark-solid disabled:opacity-50"
+              >
+                <option value="json">JSON</option>
+                <option value="javascript">JavaScript</option>
+              </select>
+            </div>
 
-        <button
-          onClick={handleFormat}
-          disabled={isFormatting}
-          className="p-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isFormatting ? 'Formatting...' : 'Format Code'}
-        </button>
+            <button
+              onClick={handleFormat}
+              disabled={isFormatting}
+              className="p-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isFormatting ? 'Formatting...' : 'Format Code'}
+            </button>
       </div>
 
-      {/* Error Display */}
-      {error && (
-        <div className="mb-4 p-3 bg-red-100 border-2 border-red-600 text-red-800 dark:bg-red-900 dark:text-red-100 dark:border-red-400">
-          <span className="font-bold">Error:</span> {error}
-        </div>
-      )}
+          {/* Error Display */}
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border-2 border-red-600 text-red-800 dark:bg-red-900 dark:text-red-100 dark:border-red-400">
+              <span className="font-bold">Error:</span> {error}
+            </div>
+          )}
 
-      {/* Input/Output Text Areas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <div className="flex justify-between items-center mb-1 min-h-[36px]">
-            {' '}
-            <label
-              htmlFor="input-code"
-              className="font-semibold dark:text-dark-primary-text"
-            >
-              Input:
-            </label>
-            <span></span>
-          </div>
-          <textarea
-            id="input-code"
-            value={inputCode}
-            onChange={(e) => setInputCode(e.target.value)}
-            placeholder="Paste your code here..."
-            className="w-full h-96 p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner"
-            spellCheck="false"
-            disabled={isFormatting}
-          />
-        </div>
+          {/* Input/Output Text Areas */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <div className="flex justify-between items-center mb-1 min-h-[36px]">
+                {' '}
+                <label
+                  htmlFor="input-code"
+                  className="font-semibold dark:text-dark-primary-text"
+                >
+                  Input:
+                </label>
+                <span></span>
+              </div>
+              <textarea
+                id="input-code"
+                value={inputCode}
+                onChange={(e) => setInputCode(e.target.value)}
+                placeholder="Paste your code here..."
+                className="w-full h-96 p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner"
+                spellCheck="false"
+                disabled={isFormatting}
+              />
+            </div>
 
-        {/* Output Area */}
-        <div>
-          <div className="flex justify-between items-center mb-1 min-h-[36px]">
-            {' '}
-            <label
-              htmlFor="output-code"
-              className="font-semibold dark:text-dark-primary-text"
-            >
-              Output:
-            </label>
-            <button
-              onClick={handleCopy}
-              disabled={!outputCode && copyButtonText !== 'Nothing to Copy'}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {copyButtonText}
-            </button>
+            {/* Output Area */}
+            <div>
+              <div className="flex justify-between items-center mb-1 min-h-[36px]">
+                {' '}
+                <label
+                  htmlFor="output-code"
+                  className="font-semibold dark:text-dark-primary-text"
+                >
+                  Output:
+                </label>
+                <button
+                  onClick={handleCopy}
+                  disabled={!outputCode && copyButtonText !== 'Nothing to Copy'}
+                  className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {copyButtonText}
+                </button>
+              </div>
+              <textarea
+                id="output-code"
+                value={outputCode}
+                readOnly
+                placeholder="Formatted code will appear here..."
+                className="w-full h-96 p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner"
+                spellCheck="false"
+              />
+            </div>
           </div>
-          <textarea
-            id="output-code"
-            value={outputCode}
-            readOnly
-            placeholder="Formatted code will appear here..."
-            className="w-full h-96 p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner"
-            spellCheck="false"
-          />
-        </div>
+        </section>
       </div>
 
       {/* About Code Formatting Section */}

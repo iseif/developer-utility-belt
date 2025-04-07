@@ -59,52 +59,62 @@ const JsonToolsPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4 dark:text-dark-primary-text">
-        JSON Tools (Validator / Viewer / Formatter)
-      </h2>
+    <div className="p-4 space-y-8">
+      <header>
+        <h1 className="text-2xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 mb-4 dark:text-dark-primary-text">
+          JSON Tools
+        </h1>
+        <p className="mb-6 text-gray-700 dark:text-gray-300">
+          Validate, format, and visualize JSON data. This tool allows you to check JSON syntax, format with proper indentation, and view in tree or text mode.
+        </p>
+      </header>
 
-      {/* Input Area */}
-      <div className="mb-4">
-        <label
-          htmlFor="input-json"
-          className="block mb-1 font-semibold dark:text-dark-primary-text"
-        >
-          Input JSON:
-        </label>
-        <textarea
-          id="input-json"
-          value={inputJson}
-          onChange={(e) => setInputJson(e.target.value)}
-          placeholder="Paste your JSON data here..."
-          className="w-full h-64 p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner"
-          spellCheck="false"
-        />
-      </div>
+      <div className="space-y-6">
+        <section className="space-y-3 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+          <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
+            JSON Validator / Formatter
+          </h3>
+          {/* Input Area */}
+          <div>
+            <label
+              htmlFor="input-json"
+              className="block mb-1 font-semibold dark:text-dark-primary-text"
+            >
+              Input JSON:
+            </label>
+            <textarea
+              id="input-json"
+              value={inputJson}
+              onChange={(e) => setInputJson(e.target.value)}
+              placeholder="Paste your JSON data here..."
+              className="w-full h-64 p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner"
+              spellCheck="false"
+            />
+          </div>
 
-      {/* Validation Status */}
-      <div className="mb-4 p-3 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
-        <span className="font-bold dark:text-dark-primary-text">Status: </span>
-        {validationStatus.valid === true && (
-          <span className="text-green-600 dark:text-green-400">
-            {validationStatus.message}
-          </span>
-        )}
-        {validationStatus.valid === false && (
-          <span className="text-red-600 dark:text-red-400">
-            {validationStatus.message}
-          </span>
-        )}
-        {validationStatus.valid === null && (
-          <span className="text-gray-500 dark:text-gray-400">
-            Waiting for input...
-          </span>
-        )}
-      </div>
+          {/* Validation Status */}
+          <div className="p-3 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+            <span className="font-bold dark:text-dark-primary-text">Status: </span>
+            {validationStatus.valid === true && (
+              <span className="text-green-600 dark:text-green-400">
+                {validationStatus.message}
+              </span>
+            )}
+            {validationStatus.valid === false && (
+              <span className="text-red-600 dark:text-red-400">
+                {validationStatus.message}
+              </span>
+            )}
+            {validationStatus.valid === null && (
+              <span className="text-gray-500 dark:text-gray-400">
+                Waiting for input...
+              </span>
+            )}
+          </div>
 
-      {/* Output Area with View Toggle */}
-      {validationStatus.valid === true && parsedJson && (
-        <div>
+          {/* Output Area with View Toggle */}
+          {validationStatus.valid === true && parsedJson && (
+            <div>
           <div className="flex justify-between items-center mb-2 flex-wrap gap-2">
             {/* View Toggle Buttons */}
             <div className="flex border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
@@ -162,8 +172,10 @@ const JsonToolsPage: React.FC = () => {
               />
             )}
           </div>
-        </div>
-      )}
+            </div>
+          )}
+        </section>
+      </div>
 
       {/* About JSON Section */}
       <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">

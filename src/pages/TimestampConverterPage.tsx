@@ -135,30 +135,36 @@ const TimestampConverterPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4 dark:text-dark-primary-text">
-        Timestamp Converter
-      </h2>
+    <div className="p-4 space-y-8">
+      <header>
+        <h1 className="text-2xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 mb-4 dark:text-dark-primary-text">
+          Timestamp Converter
+        </h1>
+        <p className="mb-6 text-gray-700 dark:text-gray-300">
+          Convert between Unix timestamps and human-readable date formats. Supports both seconds and milliseconds timestamp formats.
+        </p>
+      </header>
 
-      {/* Current Timestamp Display */}
-      <div className="mb-4 p-3 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid text-center">
-        <span className="font-semibold dark:text-dark-primary-text">
-          Current Unix Timestamp (Seconds):{' '}
-        </span>
-        <span className="font-mono text-lg text-primary-text dark:text-dark-primary-text">
-          {currentTimestamp}
-        </span>
-      </div>
-
-      {/* Error Display */}
-      {error && (
-        <div className="mb-4 p-3 bg-red-100 border-2 border-red-600 text-red-800 dark:bg-red-900 dark:text-red-100 dark:border-red-400">
-          <span className="font-bold">Error:</span> {error}
+      <div className="space-y-6">
+        {/* Current Timestamp Display */}
+        <div className="p-3 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid text-center">
+          <span className="font-semibold dark:text-dark-primary-text">
+            Current Unix Timestamp (Seconds):{' '}
+          </span>
+          <span className="font-mono text-lg text-primary-text dark:text-dark-primary-text">
+            {currentTimestamp}
+          </span>
         </div>
-      )}
 
-      {/* Conversion Sections */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Error Display */}
+        {error && (
+          <div className="p-3 bg-red-100 border-2 border-red-600 text-red-800 dark:bg-red-900 dark:text-red-100 dark:border-red-400">
+            <span className="font-bold">Error:</span> {error}
+          </div>
+        )}
+
+        {/* Conversion Sections */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Timestamp -> Readable Date */}
         <section className="space-y-3 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
           <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
@@ -268,10 +274,10 @@ const TimestampConverterPage: React.FC = () => {
             </div>
           )}
         </section>
-      </div>
+        </div>
 
-      {/* Common Formats Display */}
-      {Object.keys(commonFormats).length > 0 && (
+        {/* Common Formats Display */}
+        {Object.keys(commonFormats).length > 0 && (
         <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
           <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
             Common Date Formats
@@ -291,7 +297,8 @@ const TimestampConverterPage: React.FC = () => {
             ))}
           </ul>
         </section>
-      )}
+        )}
+      </div>
       
       {/* About Timestamps Section */}
       <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
