@@ -7,6 +7,7 @@ import DiffCheckerPage from './pages/DiffCheckerPage';
 import JsonToolsPage from './pages/JsonToolsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import TimestampConverterPage from './pages/TimestampConverterPage';
+import UrlEncoderDecoderPage from './pages/UrlEncoderDecoderPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const AppRouter: React.FC = () => {
       <Route path="/json-tools" element={<JsonToolsPage />} />
       <Route path="/diff" element={<DiffCheckerPage />} />
       <Route path="/timestamp" element={<TimestampConverterPage />} />
+      <Route path="/url-encode-decode" element={<UrlEncoderDecoderPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />
