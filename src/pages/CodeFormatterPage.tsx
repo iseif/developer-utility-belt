@@ -162,6 +162,35 @@ const CodeFormatterPage: React.FC = () => {
           />
         </div>
       </div>
+
+      {/* About Code Formatting Section */}
+      <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+        <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
+          About Code Formatting
+        </h3>
+        <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+          <p>
+            <strong>Code Formatting</strong> is the process of structuring and styling source code to improve readability and maintainability while preserving its functionality.
+          </p>
+          <p>
+            <strong>Benefits of code formatting:</strong>
+          </p>
+          <ul className="list-disc list-inside ml-4 space-y-1">
+            <li>Improved code readability</li>
+            <li>Easier maintenance and debugging</li>
+            <li>Consistent style across projects</li>
+            <li>Reduced cognitive load when reading code</li>
+            <li>Easier collaboration in team environments</li>
+          </ul>
+          <p className="mt-2">
+            <strong>Supported languages:</strong>
+          </p>
+          <ul className="list-none space-y-1">
+            <li><span className="font-semibold">JSON</span> - Formats JSON data with proper indentation and structure</li>
+            <li><span className="font-semibold">JavaScript</span> - Uses Prettier to format JavaScript code with consistent style</li>
+          </ul>
+        </div>
+      </section>
     </div>
   );
 };

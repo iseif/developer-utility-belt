@@ -292,6 +292,34 @@ const TimestampConverterPage: React.FC = () => {
           </ul>
         </section>
       )}
+      
+      {/* About Timestamps Section */}
+      <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+        <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
+          About Timestamps
+        </h3>
+        <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+          <p>
+            <strong>Unix Timestamps</strong> represent time as the number of seconds that have elapsed since January 1, 1970, at 00:00:00 UTC (the Unix Epoch).
+          </p>
+          <p>
+            <strong>Common timestamp formats:</strong>
+          </p>
+          <ul className="list-none space-y-1 font-mono text-xs">
+            <li><span className="inline-block w-36">Unix Timestamp (seconds):</span> <span className="text-gray-500">e.g.,</span> 1617184800</li>
+            <li><span className="inline-block w-36">Unix Timestamp (milliseconds):</span> <span className="text-gray-500">e.g.,</span> 1617184800000</li>
+          </ul>
+          <p className="mt-2">
+            <strong>When to use:</strong>
+          </p>
+          <ul className="list-disc list-inside ml-4 space-y-1">
+            <li>Storing dates in databases</li>
+            <li>Calculating time differences</li>
+            <li>Ensuring consistent time representation across different systems</li>
+            <li>Working with APIs that use timestamp formats</li>
+          </ul>
+        </div>
+      </section>
     </div>
   );
 };

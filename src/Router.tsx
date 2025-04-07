@@ -9,6 +9,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import TimestampConverterPage from './pages/TimestampConverterPage';
 import UrlEncoderDecoderPage from './pages/UrlEncoderDecoderPage';
 import Base64EncoderDecoderPage from './pages/Base64EncoderDecoderPage';
+import HtmlEntityEncoderDecoderPage from './pages/HtmlEntityEncoderDecoderPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const AppRouter: React.FC = () => {
       <Route path="/timestamp" element={<TimestampConverterPage />} />
       <Route path="/url-encode-decode" element={<UrlEncoderDecoderPage />} />
       <Route path="/base64-encode-decode" element={<Base64EncoderDecoderPage />} />
+      <Route path="/html-entity-encode-decode" element={<HtmlEntityEncoderDecoderPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

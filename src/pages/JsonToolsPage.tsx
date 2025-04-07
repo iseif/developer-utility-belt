@@ -164,6 +164,39 @@ const JsonToolsPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* About JSON Section */}
+      <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+        <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
+          About JSON
+        </h3>
+        <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+          <p>
+            <strong>JSON (JavaScript Object Notation)</strong> is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.
+          </p>
+          <p>
+            <strong>JSON syntax rules:</strong>
+          </p>
+          <ul className="list-none space-y-1 font-mono text-xs">
+            <li><span className="inline-block w-24">Objects:</span> <span className="text-gray-500">→</span> {'{"key": "value"}'}</li>
+            <li><span className="inline-block w-24">Arrays:</span> <span className="text-gray-500">→</span> ["value1", "value2"]</li>
+            <li><span className="inline-block w-24">Strings:</span> <span className="text-gray-500">→</span> "Must be in double quotes"</li>
+            <li><span className="inline-block w-24">Numbers:</span> <span className="text-gray-500">→</span> 42, 3.14159</li>
+            <li><span className="inline-block w-24">Booleans:</span> <span className="text-gray-500">→</span> true, false</li>
+            <li><span className="inline-block w-24">Null:</span> <span className="text-gray-500">→</span> null</li>
+          </ul>
+          <p className="mt-2">
+            <strong>When to use:</strong>
+          </p>
+          <ul className="list-disc list-inside ml-4 space-y-1">
+            <li>API responses and requests</li>
+            <li>Configuration files</li>
+            <li>Data storage in NoSQL databases</li>
+            <li>Client-server data exchange</li>
+            <li>Storing structured data</li>
+          </ul>
+        </div>
+      </section>
     </div>
   );
 };
