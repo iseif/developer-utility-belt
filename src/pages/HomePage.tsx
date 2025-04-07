@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode, FaSortAlphaDown } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -35,6 +35,12 @@ const HomePage: React.FC = () => {
         path: '/case-converter',
         description: 'Convert text between various case formats like camelCase, PascalCase, snake_case, etc.',
         icon: <FaFont className="align-middle" />,
+      },
+      {
+        name: 'Line Sorter',
+        path: '/line-tools',
+        description: 'Sort lines alphabetically and remove duplicates from multi-line text.',
+        icon: <FaSortAlphaDown className="align-middle" />,
       },
     ],
     'Encoding & Conversion': [
