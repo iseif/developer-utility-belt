@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode, FaSortAlphaDown } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode, FaSortAlphaDown, FaCalculator } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -41,6 +41,12 @@ const HomePage: React.FC = () => {
         path: '/line-tools',
         description: 'Sort lines alphabetically and remove duplicates from multi-line text.',
         icon: <FaSortAlphaDown className="align-middle" />,
+      },
+      {
+        name: 'Text Counter',
+        path: '/counter',
+        description: 'Count characters, words, lines, and estimate tokens in your text.',
+        icon: <FaCalculator className="align-middle" />,
       },
     ],
     'Encoding & Conversion': [

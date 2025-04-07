@@ -39,6 +39,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
         { name: 'Diff Checker', path: '/diff' },
         { name: 'Case Converter', path: '/case-converter' },
         { name: 'Line Sorter', path: '/line-tools' },
+        { name: 'Text Counter', path: '/counter' },
       ],
     },
     {
