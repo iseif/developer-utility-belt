@@ -19,13 +19,15 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-json-view": "^1.21.3",
-    "react-router-dom": "^7.5.0"
+    "react-router-dom": "^7.5.0",
+    "ua-parser-js": "^2.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@types/diff": "^7.0.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/ua-parser-js": "^0.7.39",
     "@typescript-eslint/eslint-plugin": "^8.29.0",
     "@typescript-eslint/parser": "^8.29.0",
     "@vitejs/plugin-react": "^4.3.4",

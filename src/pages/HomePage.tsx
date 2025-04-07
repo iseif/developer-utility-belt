@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// Import icons from a library like react-icons if available
-// For now we'll use emoji as placeholders
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -52,6 +50,12 @@ const HomePage: React.FC = () => {
         path: '/ip-info',
         description: 'Get details about your public IP address and geolocation data.',
         icon: '🌐',
+      },
+      {
+        name: 'User Agent Parser',
+        path: '/user-agent-parser',
+        description: 'Parse and analyze User Agent strings to extract browser and OS information.',
+        icon: '🔍',
       },
     ],
   };
