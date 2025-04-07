@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="64" fill="#F0F0F0"/>
+  <rect x="16" y="16" width="480" height="480" rx="48" stroke="#333333" stroke-width="16"/>
+  
+  <!-- Wrench -->
+  <path d="M350 120C350 120 320 150 290 150C260 150 240 130 240 100C240 70 260 50 290 50C320 50 350 80 350 80L400 130L350 180L300 130L350 120Z" fill="#4A6CF7" stroke="#333333" stroke-width="12"/>
+  
+  <!-- Hammer -->
+  <path d="M130 350L230 250L260 280L160 380L130 350Z" fill="#F7CA4A" stroke="#333333" stroke-width="12"/>
+  <rect x="230" y="200" width="60" height="100" rx="10" transform="rotate(45 230 200)" fill="#F7CA4A" stroke="#333333" stroke-width="12"/>
+  
+  <!-- Screwdriver -->
+  <path d="M120 120L170 170L150 190L100 140L120 120Z" fill="#F74A6C" stroke="#333333" stroke-width="12"/>
+  <rect x="170" y="170" width="20" height="180" rx="10" transform="rotate(45 170 170)" fill="#F74A6C" stroke="#333333" stroke-width="12"/>
+  
+  <!-- Code Bracket -->
+  <path d="M380 280L420 320L380 360" stroke="#333333" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M320 280L280 320L320 360" stroke="#333333" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M360 260L340 380" stroke="#333333" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
