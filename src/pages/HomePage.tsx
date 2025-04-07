@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode, FaSortAlphaDown, FaCalculator, FaTable } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaBalanceScale, FaLink, FaClock, FaLock, FaGlobe, FaRocket, FaInfoCircle, FaPalette, FaCompress, FaFont, FaExchangeAlt, FaCode, FaSortAlphaDown, FaCalculator, FaTable, FaDatabase } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   // Organize tools by category
@@ -35,6 +35,12 @@ const HomePage: React.FC = () => {
         path: '/json-csv-converter',
         description: 'Convert between JSON arrays and CSV data formats with ease.',
         icon: <FaExchangeAlt className="align-middle" />,
+      },
+      {
+        name: 'Mock Data Generator',
+        path: '/data-generator',
+        description: 'Generate realistic mock data based on your schema definition in JSON or CSV format.',
+        icon: <FaDatabase className="align-middle" />,
       },
       {
         name: 'Diff Checker',

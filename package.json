@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.1.0",
+    "@faker-js/faker": "^9.6.0",
     "@types/lodash": "^4.17.16",
     "@types/lodash-es": "^4.17.12",
     "@uiw/react-color": "^2.4.5",
