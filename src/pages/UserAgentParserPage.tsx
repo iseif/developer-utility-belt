@@ -3,7 +3,9 @@ import * as UAParserJS from 'ua-parser-js';
 
 const UserAgentParserPage: React.FC = () => {
   const [userAgentString, setUserAgentString] = useState<string>('');
-  const [parserResult, setParserResult] = useState<UAParserJS.IResult | null>(null);
+  const [parserResult, setParserResult] = useState<UAParserJS.IResult | null>(
+    null
+  );
   const [currentUserAgent, setCurrentUserAgent] = useState<string>('');
 
   // Get the current browser's user agent on component mount
@@ -14,7 +16,7 @@ const UserAgentParserPage: React.FC = () => {
 
   const handleParse = () => {
     if (!userAgentString.trim()) return;
-    
+
     const parser = new UAParserJS.UAParser(userAgentString);
     const result = parser.getResult();
     setParserResult(result);
@@ -22,7 +24,7 @@ const UserAgentParserPage: React.FC = () => {
 
   const handleUseCurrentUA = () => {
     setUserAgentString(currentUserAgent);
-    
+
     const parser = new UAParserJS.UAParser(currentUserAgent);
     const result = parser.getResult();
     setParserResult(result);
@@ -40,7 +42,8 @@ const UserAgentParserPage: React.FC = () => {
           User Agent String Parser
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Parse and analyze User Agent strings to extract browser, operating system, and device information.
+          Parse and analyze User Agent strings to extract browser, operating
+          system, and device information.
         </p>
       </header>
 
@@ -68,19 +71,19 @@ const UserAgentParserPage: React.FC = () => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={handleParse}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
             >
               Parse
             </button>
             <button
               onClick={handleUseCurrentUA}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               Use Current Browser UA
             </button>
             <button
               onClick={handleClear}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               Clear
             </button>
@@ -92,7 +95,7 @@ const UserAgentParserPage: React.FC = () => {
             <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
               Parsed Results
             </h3>
-            
+
             {/* Browser Information */}
             <div className="p-3 border-2 border-border-color dark:border-dark-border-color bg-gray-50 dark:bg-gray-800">
               <h4 className="font-bold text-primary-text dark:text-dark-primary-text mb-2">
@@ -201,7 +204,9 @@ const UserAgentParserPage: React.FC = () => {
           </h3>
           <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
             <p>
-              <strong>User Agent strings</strong> are identifiers that web browsers and other applications send to websites to help identify themselves. They typically contain information about:
+              <strong>User Agent strings</strong> are identifiers that web
+              browsers and other applications send to websites to help identify
+              themselves. They typically contain information about:
             </p>
             <ul className="list-disc list-inside ml-4 space-y-1">
               <li>Browser name and version</li>
@@ -213,7 +218,8 @@ const UserAgentParserPage: React.FC = () => {
               <strong>Example User Agent string:</strong>
             </p>
             <pre className="p-2 bg-gray-100 dark:bg-gray-800 text-xs font-mono overflow-x-auto whitespace-pre-wrap">
-              Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36
+              Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+              (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36
             </pre>
             <p className="mt-2">
               <strong>Common uses:</strong>

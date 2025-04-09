@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 const LineToolsPage: React.FC = () => {
   const [input, setInput] = useState<string>('');
@@ -19,7 +19,7 @@ const LineToolsPage: React.FC = () => {
       }
       return a.localeCompare(b);
     });
-    
+
     setOutput(sortedLines.join('\n'));
   }, [input, caseSensitive]);
 
@@ -36,7 +36,7 @@ const LineToolsPage: React.FC = () => {
       }
       return b.localeCompare(a);
     });
-    
+
     setOutput(sortedLines.join('\n'));
   }, [input, caseSensitive]);
 
@@ -47,12 +47,12 @@ const LineToolsPage: React.FC = () => {
     }
 
     const lines = input.split('\n');
-    
+
     // Use Set to deduplicate lines
     // If case-insensitive, we need to track which lines we've seen
     if (!caseSensitive) {
       const seen = new Set<string>();
-      const uniqueLines = lines.filter(line => {
+      const uniqueLines = lines.filter((line) => {
         const lowerLine = line.toLowerCase();
         if (seen.has(lowerLine)) {
           return false;
@@ -75,12 +75,12 @@ const LineToolsPage: React.FC = () => {
     }
 
     const lines = input.split('\n');
-    
+
     // First deduplicate
     let uniqueLines: string[];
     if (!caseSensitive) {
       const seen = new Set<string>();
-      uniqueLines = lines.filter(line => {
+      uniqueLines = lines.filter((line) => {
         const lowerLine = line.toLowerCase();
         if (seen.has(lowerLine)) {
           return false;
@@ -91,7 +91,7 @@ const LineToolsPage: React.FC = () => {
     } else {
       uniqueLines = [...new Set(lines)];
     }
-    
+
     // Then sort
     uniqueLines.sort((a, b) => {
       if (!caseSensitive) {
@@ -99,7 +99,7 @@ const LineToolsPage: React.FC = () => {
       }
       return a.localeCompare(b);
     });
-    
+
     setOutput(uniqueLines.join('\n'));
   }, [input, caseSensitive]);
 
@@ -109,8 +109,9 @@ const LineToolsPage: React.FC = () => {
       setTimeout(() => setCopyButtonText('Copy'), 2000);
       return;
     }
-    
-    navigator.clipboard.writeText(output)
+
+    navigator.clipboard
+      .writeText(output)
       .then(() => {
         setCopyButtonText('Copied!');
         setTimeout(() => setCopyButtonText('Copy'), 2000);
@@ -128,7 +129,8 @@ const LineToolsPage: React.FC = () => {
           Line Sorter and Deduplicator
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Sort lines alphabetically (ascending/descending) and remove duplicate lines from your text.
+          Sort lines alphabetically (ascending/descending) and remove duplicate
+          lines from your text.
         </p>
       </header>
 
@@ -141,25 +143,25 @@ const LineToolsPage: React.FC = () => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={handleSortAscending}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               Sort Ascending (A-Z)
             </button>
             <button
               onClick={handleSortDescending}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               Sort Descending (Z-A)
             </button>
             <button
               onClick={handleDeduplicate}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               Deduplicate
             </button>
             <button
               onClick={handleSortAndDeduplicate}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               Sort & Deduplicate
             </button>
@@ -172,7 +174,10 @@ const LineToolsPage: React.FC = () => {
               onChange={(e) => setCaseSensitive(e.target.checked)}
               className="mr-2 h-4 w-4"
             />
-            <label htmlFor="case-sensitive" className="text-sm dark:text-dark-primary-text">
+            <label
+              htmlFor="case-sensitive"
+              className="text-sm dark:text-dark-primary-text"
+            >
               Case Sensitive
             </label>
           </div>
@@ -239,17 +244,35 @@ const LineToolsPage: React.FC = () => {
               <strong>Available operations:</strong>
             </p>
             <ul className="list-disc list-inside ml-4 space-y-1">
-              <li><strong>Sort Ascending (A-Z):</strong> Arranges lines alphabetically from A to Z</li>
-              <li><strong>Sort Descending (Z-A):</strong> Arranges lines alphabetically from Z to A</li>
-              <li><strong>Deduplicate:</strong> Removes duplicate lines while preserving the original order</li>
-              <li><strong>Sort & Deduplicate:</strong> Removes duplicates and sorts the remaining lines alphabetically</li>
+              <li>
+                <strong>Sort Ascending (A-Z):</strong> Arranges lines
+                alphabetically from A to Z
+              </li>
+              <li>
+                <strong>Sort Descending (Z-A):</strong> Arranges lines
+                alphabetically from Z to A
+              </li>
+              <li>
+                <strong>Deduplicate:</strong> Removes duplicate lines while
+                preserving the original order
+              </li>
+              <li>
+                <strong>Sort & Deduplicate:</strong> Removes duplicates and
+                sorts the remaining lines alphabetically
+              </li>
             </ul>
             <p className="mt-2">
               <strong>Case Sensitivity:</strong>
             </p>
             <ul className="list-disc list-inside ml-4 space-y-1">
-              <li>When <strong>Case Sensitive</strong> is checked, "Apple" and "apple" are treated as different lines</li>
-              <li>When unchecked, "Apple" and "apple" are treated as the same line for sorting and deduplication</li>
+              <li>
+                When <strong>Case Sensitive</strong> is checked, "Apple" and
+                "apple" are treated as different lines
+              </li>
+              <li>
+                When unchecked, "Apple" and "apple" are treated as the same line
+                for sorting and deduplication
+              </li>
             </ul>
             <p className="mt-2">
               <strong>Common uses:</strong>

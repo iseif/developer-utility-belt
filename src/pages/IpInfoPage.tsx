@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface IpData {
   ip: string;
@@ -31,21 +31,23 @@ const IpInfoPage: React.FC = () => {
   const fetchIpAddress = async () => {
     setLoading(true);
     setError('');
-    
+
     try {
       const response = await fetch('https://api.ipify.org?format=json');
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      
+
       const data: IpData = await response.json();
       setIpAddress(data.ip);
-      
+
       // Optionally fetch geolocation data for the user's IP
       fetchGeoData(data.ip);
     } catch (err) {
-      setError(`Failed to fetch IP address: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Failed to fetch IP address: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
     } finally {
       setLoading(false);
     }
@@ -54,22 +56,22 @@ const IpInfoPage: React.FC = () => {
   const fetchGeoData = async (ip: string) => {
     setGeoLoading(true);
     setGeoError('');
-    
+
     try {
       // Using ipapi.co which provides a free tier with reasonable limits
       const response = await fetch(`https://ipapi.co/${ip}/json/`);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      
+
       // Check if the API returned an error
       if (data.error) {
         throw new Error(data.reason || 'API returned an error');
       }
-      
+
       setGeoData({
         ip: data.ip,
         city: data.city,
@@ -77,10 +79,12 @@ const IpInfoPage: React.FC = () => {
         country_name: data.country_name,
         latitude: data.latitude,
         longitude: data.longitude,
-        timezone: data.timezone
+        timezone: data.timezone,
       });
     } catch (err) {
-      setGeoError(`Failed to fetch geolocation data: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setGeoError(
+        `Failed to fetch geolocation data: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
       setGeoData(null);
     } finally {
       setGeoLoading(false);
@@ -92,15 +96,16 @@ const IpInfoPage: React.FC = () => {
       setGeoError('Please enter an IP address');
       return;
     }
-    
+
     // Simple IP validation regex
-    const ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-    
+    const ipRegex =
+      /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+
     if (!ipRegex.test(customIp.trim())) {
       setGeoError('Please enter a valid IPv4 address');
       return;
     }
-    
+
     fetchGeoData(customIp.trim());
   };
 
@@ -111,9 +116,11 @@ const IpInfoPage: React.FC = () => {
           IP Address Information
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          View your current public IP address and approximate geolocation information.
+          View your current public IP address and approximate geolocation
+          information.
           <span className="block mt-1 text-sm italic">
-            Note: Geolocation data is provided by a third-party service and may not be 100% accurate.
+            Note: Geolocation data is provided by a third-party service and may
+            not be 100% accurate.
           </span>
         </p>
       </header>
@@ -128,7 +135,7 @@ const IpInfoPage: React.FC = () => {
         <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
           Your Public IP Address
         </h3>
-        
+
         {loading ? (
           <div className="py-4 text-center text-gray-600 dark:text-gray-400">
             Loading your IP address...
@@ -141,7 +148,7 @@ const IpInfoPage: React.FC = () => {
             <div className="mt-2 flex justify-center">
               <button
                 onClick={fetchIpAddress}
-                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
               >
                 Refresh
               </button>
@@ -154,12 +161,12 @@ const IpInfoPage: React.FC = () => {
         <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
           IP Lookup
         </h3>
-        
+
         <div className="space-y-2">
           <p className="text-sm text-gray-700 dark:text-gray-300">
             Enter an IP address to lookup its geolocation information:
           </p>
-          
+
           <div className="flex space-x-2">
             <input
               type="text"
@@ -170,7 +177,7 @@ const IpInfoPage: React.FC = () => {
             />
             <button
               onClick={handleCustomLookup}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
             >
               Lookup
             </button>
@@ -195,32 +202,42 @@ const IpInfoPage: React.FC = () => {
           <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
             Geolocation Information for {geoData.ip}
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700">
               <span className="font-semibold">Location: </span>
               {geoData.city && geoData.region && geoData.country_name ? (
-                <span>{geoData.city}, {geoData.region}, {geoData.country_name}</span>
+                <span>
+                  {geoData.city}, {geoData.region}, {geoData.country_name}
+                </span>
               ) : (
-                <span className="text-gray-500 italic">Location data unavailable</span>
+                <span className="text-gray-500 italic">
+                  Location data unavailable
+                </span>
               )}
             </div>
-            
+
             <div className="p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700">
               <span className="font-semibold">Timezone: </span>
               {geoData.timezone ? (
                 <span>{geoData.timezone}</span>
               ) : (
-                <span className="text-gray-500 italic">Timezone data unavailable</span>
+                <span className="text-gray-500 italic">
+                  Timezone data unavailable
+                </span>
               )}
             </div>
-            
+
             <div className="p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700">
               <span className="font-semibold">Coordinates: </span>
               {geoData.latitude && geoData.longitude ? (
-                <span className="font-mono">{geoData.latitude.toFixed(4)}, {geoData.longitude.toFixed(4)}</span>
+                <span className="font-mono">
+                  {geoData.latitude.toFixed(4)}, {geoData.longitude.toFixed(4)}
+                </span>
               ) : (
-                <span className="text-gray-500 italic">Coordinate data unavailable</span>
+                <span className="text-gray-500 italic">
+                  Coordinate data unavailable
+                </span>
               )}
             </div>
           </div>
@@ -233,20 +250,32 @@ const IpInfoPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>IP Address</strong> (Internet Protocol Address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication.
+            <strong>IP Address</strong> (Internet Protocol Address) is a
+            numerical label assigned to each device connected to a computer
+            network that uses the Internet Protocol for communication.
           </p>
           <p>
             <strong>Public vs. Private IP:</strong>
           </p>
           <ul className="list-disc list-inside ml-4 space-y-1">
-            <li><strong>Public IP</strong> - Assigned by your ISP and visible to the internet</li>
-            <li><strong>Private IP</strong> - Used within local networks (e.g., 192.168.x.x, 10.x.x.x)</li>
+            <li>
+              <strong>Public IP</strong> - Assigned by your ISP and visible to
+              the internet
+            </li>
+            <li>
+              <strong>Private IP</strong> - Used within local networks (e.g.,
+              192.168.x.x, 10.x.x.x)
+            </li>
           </ul>
           <p className="mt-2">
             <strong>Geolocation Accuracy:</strong>
           </p>
           <p>
-            IP-based geolocation provides an approximation of physical location based on IP address registration data. It is typically accurate to the city level but can sometimes be off by significant distances. The data shown here is provided by a third-party service and should not be relied upon for critical applications.
+            IP-based geolocation provides an approximation of physical location
+            based on IP address registration data. It is typically accurate to
+            the city level but can sometimes be off by significant distances.
+            The data shown here is provided by a third-party service and should
+            not be relied upon for critical applications.
           </p>
         </div>
       </section>

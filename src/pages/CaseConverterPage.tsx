@@ -1,13 +1,19 @@
-import React, { useState, useCallback } from 'react';
-import { camelCase, snakeCase, kebabCase, startCase, upperFirst } from 'lodash-es';
+import React, { useCallback, useState } from 'react';
+import {
+  camelCase,
+  kebabCase,
+  snakeCase,
+  startCase,
+  upperFirst,
+} from 'lodash-es';
 
-type CaseType = 
-  | 'uppercase' 
-  | 'lowercase' 
-  | 'titlecase' 
-  | 'camelcase' 
-  | 'pascalcase' 
-  | 'snakecase' 
+type CaseType =
+  | 'uppercase'
+  | 'lowercase'
+  | 'titlecase'
+  | 'camelcase'
+  | 'pascalcase'
+  | 'snakecase'
   | 'kebabcase';
 
 const CaseConverterPage: React.FC = () => {
@@ -20,11 +26,11 @@ const CaseConverterPage: React.FC = () => {
 
     // Split the text by newlines to process each line separately
     const lines = text.split('\n');
-    
+
     // Process each line individually
-    const processedLines = lines.map(line => {
+    const processedLines = lines.map((line) => {
       if (!line.trim()) return line; // Preserve empty lines
-      
+
       switch (type) {
         case 'uppercase':
           return line.toUpperCase();
@@ -46,15 +52,18 @@ const CaseConverterPage: React.FC = () => {
           return line;
       }
     });
-    
+
     // Join the processed lines back together with newlines
     return processedLines.join('\n');
   }, []);
 
-  const handleConvert = useCallback((type: CaseType) => {
-    const converted = convertCase(input, type);
-    setOutput(converted);
-  }, [input, convertCase]);
+  const handleConvert = useCallback(
+    (type: CaseType) => {
+      const converted = convertCase(input, type);
+      setOutput(converted);
+    },
+    [input, convertCase]
+  );
 
   const handleCopy = useCallback(() => {
     if (!output) {
@@ -62,8 +71,9 @@ const CaseConverterPage: React.FC = () => {
       setTimeout(() => setCopyButtonText('Copy'), 2000);
       return;
     }
-    
-    navigator.clipboard.writeText(output)
+
+    navigator.clipboard
+      .writeText(output)
       .then(() => {
         setCopyButtonText('Copied!');
         setTimeout(() => setCopyButtonText('Copy'), 2000);
@@ -81,7 +91,8 @@ const CaseConverterPage: React.FC = () => {
           Text Case Converter
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Convert text between various case formats: UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case.
+          Convert text between various case formats: UPPERCASE, lowercase, Title
+          Case, camelCase, PascalCase, snake_case, kebab-case.
         </p>
       </header>
 
@@ -94,43 +105,43 @@ const CaseConverterPage: React.FC = () => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => handleConvert('uppercase')}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               UPPERCASE
             </button>
             <button
               onClick={() => handleConvert('lowercase')}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               lowercase
             </button>
             <button
               onClick={() => handleConvert('titlecase')}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               Title Case
             </button>
             <button
               onClick={() => handleConvert('camelcase')}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               camelCase
             </button>
             <button
               onClick={() => handleConvert('pascalcase')}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               PascalCase
             </button>
             <button
               onClick={() => handleConvert('snakecase')}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               snake_case
             </button>
             <button
               onClick={() => handleConvert('kebabcase')}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-dark-accent"
+              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700"
             >
               kebab-case
             </button>
@@ -198,13 +209,32 @@ const CaseConverterPage: React.FC = () => {
               <strong>Common text case formats:</strong>
             </p>
             <ul className="list-disc list-inside ml-4 space-y-1">
-              <li><strong>UPPERCASE:</strong> ALL CHARACTERS ARE CAPITAL LETTERS</li>
-              <li><strong>lowercase:</strong> all characters are small letters</li>
-              <li><strong>Title Case:</strong> First Letter Of Each Word Is Capitalized</li>
-              <li><strong>camelCase:</strong> firstWordLowercase, subsequentWordsCapitalized, noSpaces</li>
-              <li><strong>PascalCase:</strong> LikeCamelCase, ButFirstWordIsAlsoCapitalized</li>
-              <li><strong>snake_case:</strong> all_lowercase_with_underscores_between_words</li>
-              <li><strong>kebab-case:</strong> all-lowercase-with-hyphens-between-words</li>
+              <li>
+                <strong>UPPERCASE:</strong> ALL CHARACTERS ARE CAPITAL LETTERS
+              </li>
+              <li>
+                <strong>lowercase:</strong> all characters are small letters
+              </li>
+              <li>
+                <strong>Title Case:</strong> First Letter Of Each Word Is
+                Capitalized
+              </li>
+              <li>
+                <strong>camelCase:</strong> firstWordLowercase,
+                subsequentWordsCapitalized, noSpaces
+              </li>
+              <li>
+                <strong>PascalCase:</strong> LikeCamelCase,
+                ButFirstWordIsAlsoCapitalized
+              </li>
+              <li>
+                <strong>snake_case:</strong>{' '}
+                all_lowercase_with_underscores_between_words
+              </li>
+              <li>
+                <strong>kebab-case:</strong>{' '}
+                all-lowercase-with-hyphens-between-words
+              </li>
             </ul>
             <p className="mt-2">
               <strong>Common uses:</strong>

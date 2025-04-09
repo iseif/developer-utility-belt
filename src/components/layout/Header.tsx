@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({
       </div>
       <button
         onClick={toggleTheme}
-        className="p-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+        className="p-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-gray-500"
         aria-label={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} mode`}
       >
         {currentTheme === 'light' ? '🌙 Dark' : '☀️ Light'}

@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 const Base64EncoderDecoderPage: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
   const [outputText, setOutputText] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [copyButtonText, setCopyButtonText] = useState<string>('Copy');
 
   // Helper function to handle Unicode characters with btoa
   const utf8ToBase64 = (str: string): string => {
-    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) => {
-      return String.fromCharCode(parseInt(p1, 16));
-    }));
+    return btoa(
+      encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) => {
+        return String.fromCharCode(parseInt(p1, 16));
+      })
+    );
   };
 
   // Helper function to handle Unicode characters with atob
@@ -27,7 +30,9 @@ const Base64EncoderDecoderPage: React.FC = () => {
       const encoded = utf8ToBase64(inputText);
       setOutputText(encoded);
     } catch (err) {
-      setError(`Encoding Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Encoding Error: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
       setOutputText('');
     }
   };
@@ -38,21 +43,32 @@ const Base64EncoderDecoderPage: React.FC = () => {
       const decoded = base64ToUtf8(inputText);
       setOutputText(decoded);
     } catch (err) {
-      setError(`Decoding Error: Invalid Base64 string or ${err instanceof Error ? err.message : 'unknown error'}`);
+      setError(
+        `Decoding Error: Invalid Base64 string or ${err instanceof Error ? err.message : 'unknown error'}`
+      );
       setOutputText('');
     }
   };
 
-  const handleCopyToClipboard = async () => {
-    if (!outputText) return;
-    
+  const handleCopyToClipboard = useCallback(async () => {
+    if (!outputText) {
+      setCopyButtonText('Nothing to Copy');
+      setTimeout(() => setCopyButtonText('Copy'), 2000);
+      return;
+    }
+
     try {
       await navigator.clipboard.writeText(outputText);
-      // Optional: Show a temporary success message
+      setCopyButtonText('Copied!');
+      setTimeout(() => setCopyButtonText('Copy'), 2000);
     } catch (err) {
-      setError(`Copy Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Copy Error: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
+      setCopyButtonText('Failed to Copy');
+      setTimeout(() => setCopyButtonText('Copy'), 2000);
     }
-  };
+  }, [outputText]);
 
   return (
     <div className="p-4 space-y-8">
@@ -61,9 +77,15 @@ const Base64EncoderDecoderPage: React.FC = () => {
           Base64 Encoder/Decoder
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Encode text to Base64 or decode Base64 back to text. This tool uses enhanced versions of{' '}
-          <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">btoa()</code> and{' '}
-          <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">atob()</code>{' '}
+          Encode text to Base64 or decode Base64 back to text. This tool uses
+          enhanced versions of{' '}
+          <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">
+            btoa()
+          </code>{' '}
+          and{' '}
+          <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">
+            atob()
+          </code>{' '}
           with proper Unicode support.
         </p>
       </header>
@@ -97,21 +119,21 @@ const Base64EncoderDecoderPage: React.FC = () => {
             <div className="flex space-x-2">
               <button
                 onClick={handleEncode}
-                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
               >
                 Encode
               </button>
               <button
                 onClick={handleDecode}
-                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
               >
                 Decode
               </button>
             </div>
           </div>
-          
+
           {outputText && (
-            <div>
+            <div className="space-y-3">
               <div className="flex justify-between items-center mb-1">
                 <label
                   htmlFor="output-text"
@@ -121,9 +143,9 @@ const Base64EncoderDecoderPage: React.FC = () => {
                 </label>
                 <button
                   onClick={handleCopyToClipboard}
-                  className="px-2 py-0.5 text-xs border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
+                  className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Copy
+                  {copyButtonText}
                 </button>
               </div>
               <textarea
@@ -143,7 +165,9 @@ const Base64EncoderDecoderPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>Base64</strong> is a binary-to-text encoding scheme that represents binary data in an ASCII string format by translating it into a radix-64 representation.
+            <strong>Base64</strong> is a binary-to-text encoding scheme that
+            represents binary data in an ASCII string format by translating it
+            into a radix-64 representation.
           </p>
           <p>
             <strong>When to use Base64:</strong>
@@ -158,9 +182,18 @@ const Base64EncoderDecoderPage: React.FC = () => {
             <strong>Examples:</strong>
           </p>
           <ul className="list-none space-y-1 font-mono text-xs">
-            <li><span className="inline-block w-24">"Hello"</span> <span className="text-gray-500">→</span> SGVsbG8=</li>
-            <li><span className="inline-block w-24">"World!"</span> <span className="text-gray-500">→</span> V29ybGQh</li>
-            <li><span className="inline-block w-24">"Base64"</span> <span className="text-gray-500">→</span> QmFzZTY0</li>
+            <li>
+              <span className="inline-block w-24">"Hello"</span>{' '}
+              <span className="text-gray-500">→</span> SGVsbG8=
+            </li>
+            <li>
+              <span className="inline-block w-24">"World!"</span>{' '}
+              <span className="text-gray-500">→</span> V29ybGQh
+            </li>
+            <li>
+              <span className="inline-block w-24">"Base64"</span>{' '}
+              <span className="text-gray-500">→</span> QmFzZTY0
+            </li>
           </ul>
         </div>
       </section>

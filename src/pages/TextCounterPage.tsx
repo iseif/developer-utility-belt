@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 interface TextCounts {
   characters: number;
@@ -19,9 +19,7 @@ const TextCounterPage: React.FC = () => {
     const lines = text === '' ? 0 : text.split('\n').length;
 
     // Word count (split by whitespace, filter empty)
-    const words = text.trim() === '' 
-      ? 0 
-      : text.trim().split(/\s+/).length;
+    const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
 
     // Rough token estimation for AI models (approx 4 chars per token)
     // This is a simplified approximation, actual tokenization varies by model
@@ -30,9 +28,12 @@ const TextCounterPage: React.FC = () => {
     return { characters, words, lines, tokens };
   }, [text]);
 
-  const handleTextChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
-  }, []);
+  const handleTextChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setText(e.target.value);
+    },
+    []
+  );
 
   // Format numbers with thousands separators
   const formatNumber = (num: number): string => {
@@ -64,7 +65,7 @@ const TextCounterPage: React.FC = () => {
             spellCheck="false"
           />
         </section>
-        
+
         {/* Stats Section */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid bg-primary-bg dark:bg-dark-primary-bg">
@@ -75,7 +76,7 @@ const TextCounterPage: React.FC = () => {
               {formatNumber(counts.characters)}
             </p>
           </div>
-          
+
           <div className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid bg-primary-bg dark:bg-dark-primary-bg">
             <h3 className="text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-1">
               Words
@@ -84,7 +85,7 @@ const TextCounterPage: React.FC = () => {
               {formatNumber(counts.words)}
             </p>
           </div>
-          
+
           <div className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid bg-primary-bg dark:bg-dark-primary-bg">
             <h3 className="text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-1">
               Lines
@@ -93,7 +94,7 @@ const TextCounterPage: React.FC = () => {
               {formatNumber(counts.lines)}
             </p>
           </div>
-          
+
           <div className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid bg-primary-bg dark:bg-dark-primary-bg">
             <h3 className="text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-1">
               Est. Tokens
@@ -114,10 +115,21 @@ const TextCounterPage: React.FC = () => {
               <strong>How counts are calculated:</strong>
             </p>
             <ul className="list-disc list-inside ml-4 space-y-1">
-              <li><strong>Characters:</strong> Total number of characters, including spaces and line breaks</li>
-              <li><strong>Words:</strong> Sequences of characters separated by whitespace</li>
-              <li><strong>Lines:</strong> Text segments separated by line breaks</li>
-              <li><strong>Tokens:</strong> Estimated count for AI language models (approximation based on ~4 characters per token)</li>
+              <li>
+                <strong>Characters:</strong> Total number of characters,
+                including spaces and line breaks
+              </li>
+              <li>
+                <strong>Words:</strong> Sequences of characters separated by
+                whitespace
+              </li>
+              <li>
+                <strong>Lines:</strong> Text segments separated by line breaks
+              </li>
+              <li>
+                <strong>Tokens:</strong> Estimated count for AI language models
+                (approximation based on ~4 characters per token)
+              </li>
             </ul>
             <p className="mt-2">
               <strong>Common uses:</strong>
@@ -129,7 +141,8 @@ const TextCounterPage: React.FC = () => {
               <li>Analyzing text statistics for content optimization</li>
             </ul>
             <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-              Note: Token estimation is approximate and may vary by AI model. Different models use different tokenization methods.
+              Note: Token estimation is approximate and may vary by AI model.
+              Different models use different tokenization methods.
             </p>
           </div>
         </section>

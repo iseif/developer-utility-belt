@@ -141,7 +141,8 @@ const TimestampConverterPage: React.FC = () => {
           Timestamp Converter
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Convert between Unix timestamps and human-readable date formats. Supports both seconds and milliseconds timestamp formats.
+          Convert between Unix timestamps and human-readable date formats.
+          Supports both seconds and milliseconds timestamp formats.
         </p>
       </header>
 
@@ -165,141 +166,141 @@ const TimestampConverterPage: React.FC = () => {
 
         {/* Conversion Sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Timestamp -> Readable Date */}
-        <section className="space-y-3 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
-          <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
-            Timestamp to Readable Date
-          </h3>
-          <div>
-            <label
-              htmlFor="timestamp-input"
-              className="block mb-1 font-semibold dark:text-dark-primary-text"
-            >
-              Unix Timestamp:
-            </label>
-            <div className="flex items-center gap-2 mb-2 flex-wrap">
-              <input
-                type="text"
-                id="timestamp-input"
-                value={timestampInput}
-                onChange={(e) => setTimestampInput(e.target.value)}
-                placeholder="e.g., 1678886400"
-                className="flex-grow p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner min-w-[150px]"
-              />
-              <div className="flex items-center gap-2 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid p-1">
-                <label className="flex items-center gap-1 dark:text-dark-primary-text cursor-pointer">
-                  <input
-                    type="radio"
-                    name="unit"
-                    value="seconds"
-                    checked={!isMilliseconds}
-                    onChange={() => setIsMilliseconds(false)}
-                  />{' '}
-                  Sec
-                </label>
-                <label className="flex items-center gap-1 dark:text-dark-primary-text cursor-pointer">
-                  <input
-                    type="radio"
-                    name="unit"
-                    value="milliseconds"
-                    checked={isMilliseconds}
-                    onChange={() => setIsMilliseconds(true)}
-                  />{' '}
-                  Ms
-                </label>
+          {/* Timestamp -> Readable Date */}
+          <section className="space-y-3 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+            <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
+              Timestamp to Readable Date
+            </h3>
+            <div>
+              <label
+                htmlFor="timestamp-input"
+                className="block mb-1 font-semibold dark:text-dark-primary-text"
+              >
+                Unix Timestamp:
+              </label>
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
+                <input
+                  type="text"
+                  id="timestamp-input"
+                  value={timestampInput}
+                  onChange={(e) => setTimestampInput(e.target.value)}
+                  placeholder="e.g., 1678886400"
+                  className="flex-grow p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner min-w-[150px]"
+                />
+                <div className="flex items-center gap-2 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid p-1">
+                  <label className="flex items-center gap-1 dark:text-dark-primary-text cursor-pointer">
+                    <input
+                      type="radio"
+                      name="unit"
+                      value="seconds"
+                      checked={!isMilliseconds}
+                      onChange={() => setIsMilliseconds(false)}
+                    />{' '}
+                    Sec
+                  </label>
+                  <label className="flex items-center gap-1 dark:text-dark-primary-text cursor-pointer">
+                    <input
+                      type="radio"
+                      name="unit"
+                      value="milliseconds"
+                      checked={isMilliseconds}
+                      onChange={() => setIsMilliseconds(true)}
+                    />{' '}
+                    Ms
+                  </label>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleConvertToReadable}
+                  className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
+                >
+                  Convert to Date
+                </button>
+                <button
+                  onClick={handleGetCurrentTimestamp}
+                  className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
+                >
+                  Get Current
+                </button>
               </div>
             </div>
-            <div className="flex gap-2">
-              <button
-                onClick={handleConvertToReadable}
-                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
-              >
-                Convert to Date
-              </button>
-              <button
-                onClick={handleGetCurrentTimestamp}
-                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
-              >
-                Get Current
-              </button>
-            </div>
-          </div>
-          {readableOutput && (
-            <div>
-              <label className="block mb-1 font-semibold dark:text-dark-primary-text">
-                Converted Date:
-              </label>
-              <pre className="p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner whitespace-pre-wrap">
-                {readableOutput}
-              </pre>
-            </div>
-          )}
-        </section>
+            {readableOutput && (
+              <div>
+                <label className="block mb-1 font-semibold dark:text-dark-primary-text">
+                  Converted Date:
+                </label>
+                <pre className="p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner whitespace-pre-wrap">
+                  {readableOutput}
+                </pre>
+              </div>
+            )}
+          </section>
 
-        {/* Readable Date -> Timestamp */}
-        <section className="space-y-3 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
-          <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
-            Readable Date to Timestamp
-          </h3>
-          <div>
-            <label
-              htmlFor="date-string-input"
-              className="block mb-1 font-semibold dark:text-dark-primary-text"
-            >
-              Date String:
-            </label>
-            <input
-              type="text"
-              id="date-string-input"
-              value={dateStringInput}
-              onChange={(e) => setDateStringInput(e.target.value)}
-              placeholder="e.g., 2023-03-15 16:00:00"
-              className="w-full p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner mb-2"
-            />
-            <button
-              onClick={handleConvertToTimestamp}
-              className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
-            >
-              Convert to Timestamp
-            </button>
-          </div>
-          {timestampOutput && (
+          {/* Readable Date -> Timestamp */}
+          <section className="space-y-3 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+            <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
+              Readable Date to Timestamp
+            </h3>
             <div>
-              <label className="block mb-1 font-semibold dark:text-dark-primary-text">
-                Converted Timestamp:
+              <label
+                htmlFor="date-string-input"
+                className="block mb-1 font-semibold dark:text-dark-primary-text"
+              >
+                Date String:
               </label>
-              <pre className="p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner whitespace-pre-wrap">
-                {timestampOutput}
-              </pre>
+              <input
+                type="text"
+                id="date-string-input"
+                value={dateStringInput}
+                onChange={(e) => setDateStringInput(e.target.value)}
+                placeholder="e.g., 2023-03-15 16:00:00"
+                className="w-full p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner mb-2"
+              />
+              <button
+                onClick={handleConvertToTimestamp}
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
+              >
+                Convert to Timestamp
+              </button>
             </div>
-          )}
-        </section>
+            {timestampOutput && (
+              <div>
+                <label className="block mb-1 font-semibold dark:text-dark-primary-text">
+                  Converted Timestamp:
+                </label>
+                <pre className="p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner whitespace-pre-wrap">
+                  {timestampOutput}
+                </pre>
+              </div>
+            )}
+          </section>
         </div>
 
         {/* Common Formats Display */}
         {Object.keys(commonFormats).length > 0 && (
-        <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
-          <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
-            Common Date Formats
-          </h3>
-          <ul className="space-y-1 list-none">
-            {Object.entries(commonFormats).map(([key, value]) => (
-              <li
-                key={key}
-                className="font-mono text-sm text-primary-text dark:text-dark-primary-text"
-              >
-                {/* Use min-w for consistent label width */}
-                <span className="font-semibold inline-block min-w-[80px] mr-2">
-                  {key.toUpperCase()}:
-                </span>
-                <span>{value}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+          <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
+            <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
+              Common Date Formats
+            </h3>
+            <ul className="space-y-1 list-none">
+              {Object.entries(commonFormats).map(([key, value]) => (
+                <li
+                  key={key}
+                  className="font-mono text-sm text-primary-text dark:text-dark-primary-text"
+                >
+                  {/* Use min-w for consistent label width */}
+                  <span className="font-semibold inline-block min-w-[80px] mr-2">
+                    {key.toUpperCase()}:
+                  </span>
+                  <span>{value}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
       </div>
-      
+
       {/* About Timestamps Section */}
       <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
         <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
@@ -307,14 +308,26 @@ const TimestampConverterPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>Unix Timestamps</strong> represent time as the number of seconds that have elapsed since January 1, 1970, at 00:00:00 UTC (the Unix Epoch).
+            <strong>Unix Timestamps</strong> represent time as the number of
+            seconds that have elapsed since January 1, 1970, at 00:00:00 UTC
+            (the Unix Epoch).
           </p>
           <p>
             <strong>Common timestamp formats:</strong>
           </p>
           <ul className="list-none space-y-1 font-mono text-xs">
-            <li><span className="inline-block w-36">Unix Timestamp (seconds):</span> <span className="text-gray-500">e.g.,</span> 1617184800</li>
-            <li><span className="inline-block w-36">Unix Timestamp (milliseconds):</span> <span className="text-gray-500">e.g.,</span> 1617184800000</li>
+            <li>
+              <span className="inline-block w-36">
+                Unix Timestamp (seconds):
+              </span>{' '}
+              <span className="text-gray-500">e.g.,</span> 1617184800
+            </li>
+            <li>
+              <span className="inline-block w-36">
+                Unix Timestamp (milliseconds):
+              </span>{' '}
+              <span className="text-gray-500">e.g.,</span> 1617184800000
+            </li>
           </ul>
           <p className="mt-2">
             <strong>When to use:</strong>
@@ -322,7 +335,9 @@ const TimestampConverterPage: React.FC = () => {
           <ul className="list-disc list-inside ml-4 space-y-1">
             <li>Storing dates in databases</li>
             <li>Calculating time differences</li>
-            <li>Ensuring consistent time representation across different systems</li>
+            <li>
+              Ensuring consistent time representation across different systems
+            </li>
             <li>Working with APIs that use timestamp formats</li>
           </ul>
         </div>

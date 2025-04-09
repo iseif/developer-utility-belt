@@ -76,7 +76,8 @@ const CodeFormatterPage: React.FC = () => {
           Code Formatter
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Format and beautify your code with proper indentation and consistent style. Currently supports JSON and JavaScript formatting.
+          Format and beautify your code with proper indentation and consistent
+          style. Currently supports JSON and JavaScript formatting.
         </p>
       </header>
       <div className="space-y-6">
@@ -107,11 +108,11 @@ const CodeFormatterPage: React.FC = () => {
             <button
               onClick={handleFormat}
               disabled={isFormatting}
-              className="p-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text  font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isFormatting ? 'Formatting...' : 'Format Code'}
             </button>
-      </div>
+          </div>
 
           {/* Error Display */}
           {error && (
@@ -182,7 +183,9 @@ const CodeFormatterPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>Code Formatting</strong> is the process of structuring and styling source code to improve readability and maintainability while preserving its functionality.
+            <strong>Code Formatting</strong> is the process of structuring and
+            styling source code to improve readability and maintainability while
+            preserving its functionality.
           </p>
           <p>
             <strong>Benefits of code formatting:</strong>
@@ -198,8 +201,14 @@ const CodeFormatterPage: React.FC = () => {
             <strong>Supported languages:</strong>
           </p>
           <ul className="list-none space-y-1">
-            <li><span className="font-semibold">JSON</span> - Formats JSON data with proper indentation and structure</li>
-            <li><span className="font-semibold">JavaScript</span> - Uses Prettier to format JavaScript code with consistent style</li>
+            <li>
+              <span className="font-semibold">JSON</span> - Formats JSON data
+              with proper indentation and structure
+            </li>
+            <li>
+              <span className="font-semibold">JavaScript</span> - Uses Prettier
+              to format JavaScript code with consistent style
+            </li>
           </ul>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { minify as terserMinify } from 'terser';
 import { minify as cssoMinify } from 'csso';
 
@@ -9,7 +9,10 @@ const CodeMinifierPage: React.FC = () => {
   const [output, setOutput] = useState<string>('');
   const [language, setLanguage] = useState<Language>('javascript');
   const [error, setError] = useState<string>('');
-  const [stats, setStats] = useState<{ original: number; minified: number } | null>(null);
+  const [stats, setStats] = useState<{
+    original: number;
+    minified: number;
+  } | null>(null);
 
   const handleMinify = useCallback(async () => {
     if (!input.trim()) {
@@ -35,7 +38,7 @@ const CodeMinifierPage: React.FC = () => {
       }
 
       setOutput(minified);
-      
+
       // Calculate size statistics
       const originalSize = new Blob([input]).size;
       const minifiedSize = new Blob([minified]).size;
@@ -44,7 +47,9 @@ const CodeMinifierPage: React.FC = () => {
         minified: minifiedSize,
       });
     } catch (err) {
-      setError(`Failed to minify ${language.toUpperCase()} code: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Failed to minify ${language.toUpperCase()} code: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
       setOutput('');
       setStats(null);
     }
@@ -68,7 +73,8 @@ const CodeMinifierPage: React.FC = () => {
           Code Minifier
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Minify JavaScript and CSS code to reduce file size. All processing happens in your browser.
+          Minify JavaScript and CSS code to reduce file size. All processing
+          happens in your browser.
         </p>
       </header>
 
@@ -98,7 +104,7 @@ const CodeMinifierPage: React.FC = () => {
 
             <button
               onClick={handleMinify}
-              className="px-4 py-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+              className="px-4 py-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
             >
               Minify
             </button>
@@ -182,11 +188,11 @@ const CodeMinifierPage: React.FC = () => {
             <p>
               <strong>What is minification?</strong>
             </p>
-            <p>
-              Minification is the process of reducing code size by:
-            </p>
+            <p>Minification is the process of reducing code size by:</p>
             <ul className="list-disc list-inside ml-4 space-y-1">
-              <li>Removing unnecessary characters (whitespace, newlines, comments)</li>
+              <li>
+                Removing unnecessary characters (whitespace, newlines, comments)
+              </li>
               <li>Using shorter variable names</li>
               <li>Combining multiple files into one</li>
               <li>Optimizing and shortening code when possible</li>

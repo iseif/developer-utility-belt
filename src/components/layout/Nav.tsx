@@ -6,19 +6,21 @@ interface NavProps {
 
 const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
   // State to track which categories are expanded
-  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({
-    'General': true,
+  const [expandedCategories, setExpandedCategories] = useState<
+    Record<string, boolean>
+  >({
+    General: true,
     'Code & Data': true,
     'Encoding & Conversion': true,
     'Network & Info': true,
-    'Graphics & Design': true
+    'Graphics & Design': true,
   });
 
   // Toggle category expansion
   const toggleCategory = (categoryName: string) => {
-    setExpandedCategories(prev => ({
+    setExpandedCategories((prev) => ({
       ...prev,
-      [categoryName]: !prev[categoryName]
+      [categoryName]: !prev[categoryName],
     }));
   };
 
@@ -26,9 +28,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
   const navCategories = [
     {
       name: 'General',
-      items: [
-        { name: 'Home', path: '/' },
-      ],
+      items: [{ name: 'Home', path: '/' }],
     },
     {
       name: 'Code & Data',
@@ -50,7 +50,10 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
       items: [
         { name: 'URL Encoder/Decoder', path: '/url-encode-decode' },
         { name: 'Base64 Encoder/Decoder', path: '/base64-encode-decode' },
-        { name: 'HTML Entity Encoder/Decoder', path: '/html-entity-encode-decode' },
+        {
+          name: 'HTML Entity Encoder/Decoder',
+          path: '/html-entity-encode-decode',
+        },
         { name: 'Timestamp Converter', path: '/timestamp' },
         { name: 'JWT Debugger', path: '/jwt-debugger' },
       ],
@@ -70,7 +73,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
       ],
     },
   ];
-  
+
   // We don't need to flatten items anymore since we're rendering by category
 
   return (
@@ -84,7 +87,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
         {navCategories.map((category) => (
           <div key={category.name} className="mb-3">
             {category.name !== 'General' ? (
-              <button 
+              <button
                 onClick={() => toggleCategory(category.name)}
                 className="w-full flex items-center justify-between text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-1 px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors"
               >
@@ -94,15 +97,18 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
                 </span>
               </button>
             ) : null}
-            
+
             {/* Show items if category is expanded or if it's General */}
-            {(expandedCategories[category.name] || category.name === 'General') && (
-              <ul className={`${category.name !== 'General' ? 'ml-2 border-l-2 border-gray-200 dark:border-gray-700 pl-2' : ''}`}>
+            {(expandedCategories[category.name] ||
+              category.name === 'General') && (
+              <ul
+                className={`${category.name !== 'General' ? 'ml-2 border-l-2 border-gray-200 dark:border-gray-700 pl-2' : ''}`}
+              >
                 {category.items.map((item) => (
                   <li key={item.name} className="mb-1">
                     <a
                       href={item.path}
-                      className="block p-2 border-2 border-transparent text-primary-text dark:text-dark-primary-text hover:border-border-color hover:bg-accent hover:font-bold hover:shadow-solid dark:hover:border-dark-border-color dark:hover:bg-dark-accent dark:hover:text-primary-text dark:hover:shadow-dark-solid"
+                      className="block p-2 border-2 border-transparent text-primary-text dark:text-dark-primary-text hover:border-border-color hover:bg-accent hover:font-bold hover:shadow-solid dark:hover:border-dark-border-color dark:hover:bg-gray-700 dark:hover:shadow-dark-solid"
                     >
                       {item.name}
                     </a>

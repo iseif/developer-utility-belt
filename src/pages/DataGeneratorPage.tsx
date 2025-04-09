@@ -47,26 +47,29 @@ const DataGeneratorPage: React.FC = () => {
     { id: '2', name: 'name', type: 'fullName' },
     { id: '3', name: 'email', type: 'email' },
   ]);
-  
+
   // State for number of records to generate
   const [recordCount, setRecordCount] = useState<number>(10);
-  
+
   // State for output format
   const [outputFormat, setOutputFormat] = useState<'json' | 'csv'>('json');
-  
+
   // State for generated output
   const [output, setOutput] = useState<string>('');
-  
+
   // State for copy button text
   const [copyButtonText, setCopyButtonText] = useState<string>('Copy Output');
-  
+
   // State for error message
   const [error, setError] = useState<string>('');
 
   // Function to add a new field to the schema
   const addField = () => {
     const newId = (fields.length + 1).toString();
-    setFields([...fields, { id: newId, name: `field${newId}`, type: 'fullName' }]);
+    setFields([
+      ...fields,
+      { id: newId, name: `field${newId}`, type: 'fullName' },
+    ]);
   };
 
   // Function to remove a field from the schema
@@ -75,25 +78,21 @@ const DataGeneratorPage: React.FC = () => {
       setError('You must have at least one field in the schema.');
       return;
     }
-    setFields(fields.filter(field => field.id !== id));
+    setFields(fields.filter((field) => field.id !== id));
     setError('');
   };
 
   // Function to update a field's name
   const updateFieldName = (id: string, name: string) => {
     setFields(
-      fields.map(field => 
-        field.id === id ? { ...field, name } : field
-      )
+      fields.map((field) => (field.id === id ? { ...field, name } : field))
     );
   };
 
   // Function to update a field's type
   const updateFieldType = (id: string, type: FieldType) => {
     setFields(
-      fields.map(field => 
-        field.id === id ? { ...field, type } : field
-      )
+      fields.map((field) => (field.id === id ? { ...field, type } : field))
     );
   };
 
@@ -162,36 +161,36 @@ const DataGeneratorPage: React.FC = () => {
   // Function to generate data based on the schema
   const generateData = () => {
     setError('');
-    
+
     // Validate input
     if (fields.length === 0) {
       setError('You must define at least one field in the schema.');
       return;
     }
-    
+
     if (recordCount <= 0 || recordCount > 1000) {
       setError('Number of records must be between 1 and 1000.');
       return;
     }
-    
+
     // Check for duplicate field names
-    const fieldNames = fields.map(field => field.name);
+    const fieldNames = fields.map((field) => field.name);
     if (new Set(fieldNames).size !== fieldNames.length) {
       setError('Field names must be unique.');
       return;
     }
-    
+
     try {
       // Generate records
       const records = [];
       for (let i = 0; i < recordCount; i++) {
         const record: Record<string, any> = {};
-        fields.forEach(field => {
+        fields.forEach((field) => {
           record[field.name] = generateValue(field.type);
         });
         records.push(record);
       }
-      
+
       // Format output based on selected format
       if (outputFormat === 'json') {
         setOutput(JSON.stringify(records, null, 2));
@@ -203,11 +202,13 @@ const DataGeneratorPage: React.FC = () => {
         });
         setOutput(csv);
       }
-      
+
       setCopyButtonText('Copy Output');
     } catch (err) {
       console.error('Error generating data:', err);
-      setError(err instanceof Error ? err.message : 'An unknown error occurred.');
+      setError(
+        err instanceof Error ? err.message : 'An unknown error occurred.'
+      );
       setOutput('');
     }
   };
@@ -219,7 +220,7 @@ const DataGeneratorPage: React.FC = () => {
       setTimeout(() => setCopyButtonText('Copy Output'), 2000);
       return;
     }
-    
+
     try {
       await navigator.clipboard.writeText(output);
       setCopyButtonText('Copied!');
@@ -238,7 +239,8 @@ const DataGeneratorPage: React.FC = () => {
           Mock Data Generator
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Generate realistic mock data based on your schema definition. Specify field types, number of records, and output format.
+          Generate realistic mock data based on your schema definition. Specify
+          field types, number of records, and output format.
         </p>
       </header>
 
@@ -247,13 +249,16 @@ const DataGeneratorPage: React.FC = () => {
           <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
             Data Schema Definition
           </h3>
-          
+
           {/* Schema Fields */}
           <div className="space-y-3">
             {fields.map((field) => (
               <div key={field.id} className="flex flex-wrap items-start gap-2">
                 <div className="flex-1 min-w-[200px]">
-                  <label htmlFor={`field-name-${field.id}`} className="block text-sm font-medium mb-1 dark:text-dark-primary-text">
+                  <label
+                    htmlFor={`field-name-${field.id}`}
+                    className="block text-sm font-medium mb-1 dark:text-dark-primary-text"
+                  >
                     Field Name:
                   </label>
                   <input
@@ -264,15 +269,20 @@ const DataGeneratorPage: React.FC = () => {
                     className="w-full p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text shadow-inner"
                   />
                 </div>
-                
+
                 <div className="flex-1 min-w-[200px]">
-                  <label htmlFor={`field-type-${field.id}`} className="block text-sm font-medium mb-1 dark:text-dark-primary-text">
+                  <label
+                    htmlFor={`field-type-${field.id}`}
+                    className="block text-sm font-medium mb-1 dark:text-dark-primary-text"
+                  >
                     Field Type:
                   </label>
                   <select
                     id={`field-type-${field.id}`}
                     value={field.type}
-                    onChange={(e) => updateFieldType(field.id, e.target.value as FieldType)}
+                    onChange={(e) =>
+                      updateFieldType(field.id, e.target.value as FieldType)
+                    }
                     className="w-full p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text shadow-inner"
                   >
                     <optgroup label="Person">
@@ -318,9 +328,11 @@ const DataGeneratorPage: React.FC = () => {
                     </optgroup>
                   </select>
                 </div>
-                
+
                 <div>
-                  <label className="block text-sm font-medium mb-1 invisible">Action</label>
+                  <label className="block text-sm font-medium mb-1 invisible">
+                    Action
+                  </label>
                   <button
                     onClick={() => removeField(field.id)}
                     className="p-2 border-2 border-border-color dark:border-dark-border-color bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 shadow-solid dark:shadow-dark-solid hover:bg-red-200 dark:hover:bg-red-800"
@@ -331,7 +343,7 @@ const DataGeneratorPage: React.FC = () => {
                 </div>
               </div>
             ))}
-            
+
             <button
               onClick={addField}
               className="flex items-center gap-2 px-3 py-2 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
@@ -339,14 +351,19 @@ const DataGeneratorPage: React.FC = () => {
               <FaPlus /> Add Field
             </button>
           </div>
-          
+
           {/* Generation Options */}
           <div className="mt-6 space-y-4">
-            <h4 className="font-semibold dark:text-dark-primary-text">Generation Options:</h4>
-            
+            <h4 className="font-semibold dark:text-dark-primary-text">
+              Generation Options:
+            </h4>
+
             <div className="flex flex-wrap gap-6">
               <div className="min-w-[200px]">
-                <label htmlFor="record-count" className="block text-sm font-medium mb-1 dark:text-dark-primary-text">
+                <label
+                  htmlFor="record-count"
+                  className="block text-sm font-medium mb-1 dark:text-dark-primary-text"
+                >
                   Number of Records:
                 </label>
                 <input
@@ -362,7 +379,7 @@ const DataGeneratorPage: React.FC = () => {
                   Maximum: 1000 records
                 </p>
               </div>
-              
+
               <div className="min-w-[200px]">
                 <label className="block text-sm font-medium mb-1 dark:text-dark-primary-text">
                   Output Format:
@@ -393,27 +410,29 @@ const DataGeneratorPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <button
               onClick={generateData}
-              className="p-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Generate Data
             </button>
           </div>
-          
+
           {/* Error Display */}
           {error && (
             <div className="p-3 border-2 border-red-500 dark:border-red-700 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 shadow-solid">
               <strong>Error:</strong> {error}
             </div>
           )}
-          
+
           {/* Output Area */}
           {output && (
             <div className="mt-6">
               <div className="flex justify-between items-center mb-2">
-                <h4 className="font-semibold dark:text-dark-primary-text">Generated Data:</h4>
+                <h4 className="font-semibold dark:text-dark-primary-text">
+                  Generated Data:
+                </h4>
                 <button
                   onClick={handleCopy}
                   className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
@@ -431,7 +450,7 @@ const DataGeneratorPage: React.FC = () => {
           )}
         </section>
       </div>
-      
+
       {/* About Data Generation Section */}
       <section className="mt-8 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
         <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
@@ -439,7 +458,9 @@ const DataGeneratorPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>Mock Data Generation</strong> is the process of creating realistic but fictional data for testing, development, and demonstration purposes.
+            <strong>Mock Data Generation</strong> is the process of creating
+            realistic but fictional data for testing, development, and
+            demonstration purposes.
           </p>
           <p>
             <strong>Common use cases:</strong>
@@ -455,10 +476,17 @@ const DataGeneratorPage: React.FC = () => {
             <strong>Tips for effective data generation:</strong>
           </p>
           <ul className="list-disc list-inside ml-4 space-y-1">
-            <li>Define a schema that closely matches your real data structure</li>
+            <li>
+              Define a schema that closely matches your real data structure
+            </li>
             <li>Use appropriate field types to ensure realistic values</li>
-            <li>Generate an appropriate volume of data for your testing needs</li>
-            <li>Consider relationships between fields (e.g., matching names and emails)</li>
+            <li>
+              Generate an appropriate volume of data for your testing needs
+            </li>
+            <li>
+              Consider relationships between fields (e.g., matching names and
+              emails)
+            </li>
           </ul>
         </div>
       </section>

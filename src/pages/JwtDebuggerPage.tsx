@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 const JwtDebuggerPage: React.FC = () => {
   const [jwtToken, setJwtToken] = useState<string>('');
-  const [decodedHeader, setDecodedHeader] = useState<Record<string, unknown> | null>(null);
-  const [decodedPayload, setDecodedPayload] = useState<Record<string, unknown> | null>(null);
+  const [decodedHeader, setDecodedHeader] = useState<Record<
+    string,
+    unknown
+  > | null>(null);
+  const [decodedPayload, setDecodedPayload] = useState<Record<
+    string,
+    unknown
+  > | null>(null);
   const [signature, setSignature] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [isExpired, setIsExpired] = useState<boolean | null>(null);
+  const [headerCopyButtonText, setHeaderCopyButtonText] =
+    useState<string>('Copy');
+  const [payloadCopyButtonText, setPayloadCopyButtonText] =
+    useState<string>('Copy');
+  const [signatureCopyButtonText, setSignatureCopyButtonText] =
+    useState<string>('Copy');
 
   // Base64 URL decode function
   const base64UrlDecode = (input: string): string => {
     // Replace non-url compatible chars with standard base64 chars
-    let output = input
-      .replace(/-/g, '+')
-      .replace(/_/g, '/');
-    
+    let output = input.replace(/-/g, '+').replace(/_/g, '/');
+
     // Add padding if needed
     switch (output.length % 4) {
       case 0:
@@ -51,9 +61,11 @@ const JwtDebuggerPage: React.FC = () => {
 
       // Split the JWT token into its three parts
       const parts = jwtToken.trim().split('.');
-      
+
       if (parts.length !== 3) {
-        throw new Error('Invalid JWT format. Expected three parts separated by dots.');
+        throw new Error(
+          'Invalid JWT format. Expected three parts separated by dots.'
+        );
       }
 
       // Decode the header (first part)
@@ -76,18 +88,57 @@ const JwtDebuggerPage: React.FC = () => {
         setIsExpired(currentTime > expirationTime);
       }
     } catch (err) {
-      setError(`Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Error: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
     }
   };
 
-  const handleCopyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      // Optional: Show a temporary success message
-    } catch (err) {
-      setError(`Copy Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
-    }
-  };
+  const handleCopyToClipboard = useCallback(
+    async (text: string, section: 'header' | 'payload' | 'signature') => {
+      if (!text) {
+        const setButtonText =
+          section === 'header'
+            ? setHeaderCopyButtonText
+            : section === 'payload'
+              ? setPayloadCopyButtonText
+              : setSignatureCopyButtonText;
+
+        setButtonText('Nothing to Copy');
+        setTimeout(() => setButtonText('Copy'), 2000);
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(text);
+
+        const setButtonText =
+          section === 'header'
+            ? setHeaderCopyButtonText
+            : section === 'payload'
+              ? setPayloadCopyButtonText
+              : setSignatureCopyButtonText;
+
+        setButtonText('Copied!');
+        setTimeout(() => setButtonText('Copy'), 2000);
+      } catch (err) {
+        setError(
+          `Copy Error: ${err instanceof Error ? err.message : 'Unknown error'}`
+        );
+
+        const setButtonText =
+          section === 'header'
+            ? setHeaderCopyButtonText
+            : section === 'payload'
+              ? setPayloadCopyButtonText
+              : setSignatureCopyButtonText;
+
+        setButtonText('Failed to Copy');
+        setTimeout(() => setButtonText('Copy'), 2000);
+      }
+    },
+    []
+  );
 
   // Format JSON with indentation for display
   const formatJson = (json: Record<string, unknown>): string => {
@@ -101,8 +152,11 @@ const JwtDebuggerPage: React.FC = () => {
           JWT Debugger
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Decode and inspect JSON Web Tokens. This tool decodes the header, payload, and signature parts of a JWT 
-          for inspection purposes. <span className="font-semibold text-red-600 dark:text-red-400">Note: This tool does not verify the signature.</span>
+          Decode and inspect JSON Web Tokens. This tool decodes the header,
+          payload, and signature parts of a JWT for inspection purposes.{' '}
+          <span className="font-semibold text-red-600 dark:text-red-400">
+            Note: This tool does not verify the signature.
+          </span>
         </p>
       </header>
 
@@ -134,7 +188,7 @@ const JwtDebuggerPage: React.FC = () => {
             <div className="flex space-x-2">
               <button
                 onClick={decodeJwt}
-                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
               >
                 Decode
               </button>
@@ -149,10 +203,12 @@ const JwtDebuggerPage: React.FC = () => {
                 Header
               </h3>
               <button
-                onClick={() => handleCopyToClipboard(formatJson(decodedHeader))}
-                className="px-2 py-0.5 text-xs border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
+                onClick={() =>
+                  handleCopyToClipboard(formatJson(decodedHeader), 'header')
+                }
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Copy
+                {headerCopyButtonText}
               </button>
             </div>
             <pre className="w-full p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner overflow-x-auto">
@@ -168,20 +224,28 @@ const JwtDebuggerPage: React.FC = () => {
                 Payload
               </h3>
               <button
-                onClick={() => handleCopyToClipboard(formatJson(decodedPayload))}
-                className="px-2 py-0.5 text-xs border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
+                onClick={() =>
+                  handleCopyToClipboard(formatJson(decodedPayload), 'payload')
+                }
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Copy
+                {payloadCopyButtonText}
               </button>
             </div>
             {isExpired !== null && (
-              <div className={`p-2 border-2 ${isExpired ? 'border-red-500 bg-red-100 dark:bg-red-900 dark:border-red-700 text-red-700 dark:text-red-100' : 'border-green-500 bg-green-100 dark:bg-green-900 dark:border-green-700 text-green-700 dark:text-green-100'}`}>
+              <div
+                className={`p-2 border-2 ${isExpired ? 'border-red-500 bg-red-100 dark:bg-red-900 dark:border-red-700 text-red-700 dark:text-red-100' : 'border-green-500 bg-green-100 dark:bg-green-900 dark:border-green-700 text-green-700 dark:text-green-100'}`}
+              >
                 <span className="font-semibold">
                   {isExpired ? 'Token is expired!' : 'Token is not expired'}
                 </span>
                 {decodedPayload && 'exp' in decodedPayload && (
                   <span className="ml-2">
-                    (Expires: {new Date(Number(decodedPayload.exp) * 1000).toLocaleString()})
+                    (Expires:{' '}
+                    {new Date(
+                      Number(decodedPayload.exp) * 1000
+                    ).toLocaleString()}
+                    )
                   </span>
                 )}
               </div>
@@ -199,10 +263,10 @@ const JwtDebuggerPage: React.FC = () => {
                 Signature
               </h3>
               <button
-                onClick={() => handleCopyToClipboard(signature)}
-                className="px-2 py-0.5 text-xs border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
+                onClick={() => handleCopyToClipboard(signature, 'signature')}
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Copy
+                {signatureCopyButtonText}
               </button>
             </div>
             <div className="p-2 border-2 border-border-color dark:border-dark-border-color bg-gray-100 dark:bg-gray-700 text-primary-text dark:text-dark-primary-text font-mono text-sm shadow-inner overflow-x-auto">
@@ -218,29 +282,57 @@ const JwtDebuggerPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>JSON Web Token (JWT)</strong> is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
+            <strong>JSON Web Token (JWT)</strong> is an open standard (RFC 7519)
+            that defines a compact and self-contained way for securely
+            transmitting information between parties as a JSON object.
           </p>
           <p>
             <strong>JWT Structure:</strong>
           </p>
           <ul className="list-disc list-inside ml-4 space-y-1">
-            <li><strong>Header</strong> - Contains metadata about the token (type and signing algorithm)</li>
-            <li><strong>Payload</strong> - Contains claims (statements about an entity) and data</li>
-            <li><strong>Signature</strong> - Verifies the sender and ensures the message wasn't changed</li>
+            <li>
+              <strong>Header</strong> - Contains metadata about the token (type
+              and signing algorithm)
+            </li>
+            <li>
+              <strong>Payload</strong> - Contains claims (statements about an
+              entity) and data
+            </li>
+            <li>
+              <strong>Signature</strong> - Verifies the sender and ensures the
+              message wasn't changed
+            </li>
           </ul>
           <p className="mt-2">
             <strong>Common JWT Claims:</strong>
           </p>
           <ul className="list-none space-y-1 font-mono text-xs">
-            <li><span className="inline-block w-12">iss</span> <span className="text-gray-500">→</span> Issuer of the token</li>
-            <li><span className="inline-block w-12">sub</span> <span className="text-gray-500">→</span> Subject (typically the user ID)</li>
-            <li><span className="inline-block w-12">exp</span> <span className="text-gray-500">→</span> Expiration time</li>
-            <li><span className="inline-block w-12">iat</span> <span className="text-gray-500">→</span> Issued at time</li>
-            <li><span className="inline-block w-12">aud</span> <span className="text-gray-500">→</span> Audience (recipient)</li>
+            <li>
+              <span className="inline-block w-12">iss</span>{' '}
+              <span className="text-gray-500">→</span> Issuer of the token
+            </li>
+            <li>
+              <span className="inline-block w-12">sub</span>{' '}
+              <span className="text-gray-500">→</span> Subject (typically the
+              user ID)
+            </li>
+            <li>
+              <span className="inline-block w-12">exp</span>{' '}
+              <span className="text-gray-500">→</span> Expiration time
+            </li>
+            <li>
+              <span className="inline-block w-12">iat</span>{' '}
+              <span className="text-gray-500">→</span> Issued at time
+            </li>
+            <li>
+              <span className="inline-block w-12">aud</span>{' '}
+              <span className="text-gray-500">→</span> Audience (recipient)
+            </li>
           </ul>
           <p className="mt-2 text-red-600 dark:text-red-400 font-semibold">
-            Security Note: This tool only decodes JWTs for inspection and does not verify signatures. 
-            Never trust a JWT without proper signature verification in production environments.
+            Security Note: This tool only decodes JWTs for inspection and does
+            not verify signatures. Never trust a JWT without proper signature
+            verification in production environments.
           </p>
         </div>
       </section>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 const HtmlEntityEncoderDecoderPage: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
   const [outputText, setOutputText] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [copyButtonText, setCopyButtonText] = useState<string>('Copy');
 
   const handleEncode = () => {
     try {
@@ -14,7 +15,9 @@ const HtmlEntityEncoderDecoderPage: React.FC = () => {
       const encoded = tempElement.innerHTML;
       setOutputText(encoded);
     } catch (err) {
-      setError(`Encoding Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Encoding Error: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
       setOutputText('');
     }
   };
@@ -28,21 +31,32 @@ const HtmlEntityEncoderDecoderPage: React.FC = () => {
       const decoded = tempElement.textContent || '';
       setOutputText(decoded);
     } catch (err) {
-      setError(`Decoding Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Decoding Error: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
       setOutputText('');
     }
   };
 
-  const handleCopyToClipboard = async () => {
-    if (!outputText) return;
-    
+  const handleCopyToClipboard = useCallback(async () => {
+    if (!outputText) {
+      setCopyButtonText('Nothing to Copy');
+      setTimeout(() => setCopyButtonText('Copy'), 2000);
+      return;
+    }
+
     try {
       await navigator.clipboard.writeText(outputText);
-      // Optional: Show a temporary success message
+      setCopyButtonText('Copied!');
+      setTimeout(() => setCopyButtonText('Copy'), 2000);
     } catch (err) {
-      setError(`Copy Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Copy Error: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
+      setCopyButtonText('Failed to Copy');
+      setTimeout(() => setCopyButtonText('Copy'), 2000);
     }
-  };
+  }, [outputText]);
 
   return (
     <div className="p-4 space-y-8">
@@ -51,7 +65,19 @@ const HtmlEntityEncoderDecoderPage: React.FC = () => {
           HTML Entity Encoder/Decoder
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Convert special HTML characters like <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">&lt;</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">&gt;</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">&amp;</code> to their HTML entity equivalents and vice versa.
+          Convert special HTML characters like{' '}
+          <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">
+            &lt;
+          </code>
+          ,{' '}
+          <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">
+            &gt;
+          </code>
+          ,{' '}
+          <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">
+            &amp;
+          </code>{' '}
+          to their HTML entity equivalents and vice versa.
         </p>
       </header>
 
@@ -84,21 +110,21 @@ const HtmlEntityEncoderDecoderPage: React.FC = () => {
             <div className="flex space-x-2">
               <button
                 onClick={handleEncode}
-                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
               >
                 Encode
               </button>
               <button
                 onClick={handleDecode}
-                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+                className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
               >
                 Decode
               </button>
             </div>
           </div>
-          
+
           {outputText && (
-            <div>
+            <div className="space-y-3">
               <div className="flex justify-between items-center mb-1">
                 <label
                   htmlFor="output-text"
@@ -108,9 +134,9 @@ const HtmlEntityEncoderDecoderPage: React.FC = () => {
                 </label>
                 <button
                   onClick={handleCopyToClipboard}
-                  className="px-2 py-0.5 text-xs border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500"
+                  className="px-3 py-1 border-2 border-border-color dark:border-dark-border-color bg-gray-200 dark:bg-gray-600 text-sm font-semibold shadow-solid dark:shadow-dark-solid hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Copy
+                  {copyButtonText}
                 </button>
               </div>
               <textarea
@@ -130,21 +156,50 @@ const HtmlEntityEncoderDecoderPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>HTML Entities</strong> are special codes used to represent characters that have special meaning in HTML or that might be difficult to type directly.
+            <strong>HTML Entities</strong> are special codes used to represent
+            characters that have special meaning in HTML or that might be
+            difficult to type directly.
           </p>
           <p>
             <strong>Common HTML Entities:</strong>
           </p>
           <ul className="list-none space-y-1 font-mono text-xs">
-            <li><span className="inline-block w-24">&lt;</span> <span className="text-gray-500">→</span> &amp;lt;</li>
-            <li><span className="inline-block w-24">&gt;</span> <span className="text-gray-500">→</span> &amp;gt;</li>
-            <li><span className="inline-block w-24">&amp;</span> <span className="text-gray-500">→</span> &amp;amp;</li>
-            <li><span className="inline-block w-24">"</span> <span className="text-gray-500">→</span> &amp;quot;</li>
-            <li><span className="inline-block w-24">'</span> <span className="text-gray-500">→</span> &amp;apos;</li>
-            <li><span className="inline-block w-24">©</span> <span className="text-gray-500">→</span> &amp;copy;</li>
-            <li><span className="inline-block w-24">®</span> <span className="text-gray-500">→</span> &amp;reg;</li>
-            <li><span className="inline-block w-24">™</span> <span className="text-gray-500">→</span> &amp;trade;</li>
-            <li><span className="inline-block w-24">Non-breaking space</span> <span className="text-gray-500">→</span> &amp;nbsp;</li>
+            <li>
+              <span className="inline-block w-24">&lt;</span>{' '}
+              <span className="text-gray-500">→</span> &amp;lt;
+            </li>
+            <li>
+              <span className="inline-block w-24">&gt;</span>{' '}
+              <span className="text-gray-500">→</span> &amp;gt;
+            </li>
+            <li>
+              <span className="inline-block w-24">&amp;</span>{' '}
+              <span className="text-gray-500">→</span> &amp;amp;
+            </li>
+            <li>
+              <span className="inline-block w-24">"</span>{' '}
+              <span className="text-gray-500">→</span> &amp;quot;
+            </li>
+            <li>
+              <span className="inline-block w-24">'</span>{' '}
+              <span className="text-gray-500">→</span> &amp;apos;
+            </li>
+            <li>
+              <span className="inline-block w-24">©</span>{' '}
+              <span className="text-gray-500">→</span> &amp;copy;
+            </li>
+            <li>
+              <span className="inline-block w-24">®</span>{' '}
+              <span className="text-gray-500">→</span> &amp;reg;
+            </li>
+            <li>
+              <span className="inline-block w-24">™</span>{' '}
+              <span className="text-gray-500">→</span> &amp;trade;
+            </li>
+            <li>
+              <span className="inline-block w-24">Non-breaking space</span>{' '}
+              <span className="text-gray-500">→</span> &amp;nbsp;
+            </li>
           </ul>
           <p className="mt-2">
             <strong>When to use:</strong>
@@ -152,7 +207,9 @@ const HtmlEntityEncoderDecoderPage: React.FC = () => {
           <ul className="list-disc list-inside ml-4 space-y-1">
             <li>Displaying HTML code examples in a web page</li>
             <li>Preventing HTML injection in user-generated content</li>
-            <li>Ensuring special characters display correctly in HTML documents</li>
+            <li>
+              Ensuring special characters display correctly in HTML documents
+            </li>
           </ul>
         </div>
       </section>

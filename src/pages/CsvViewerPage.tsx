@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Papa from 'papaparse';
 import { FaFileUpload, FaTable } from 'react-icons/fa';
 
@@ -11,7 +11,7 @@ const CsvViewerPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
   const rowsPerPage = 10;
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const CsvViewerPage: React.FC = () => {
       }
 
       const data = result.data;
-      
+
       if (data.length === 0) {
         setError('No data found in the CSV');
         setParsedData([]);
@@ -49,10 +49,10 @@ const CsvViewerPage: React.FC = () => {
       // Calculate total pages
       const dataRows = useFirstRowAsHeader ? data.slice(1) : data;
       setTotalPages(Math.max(1, Math.ceil(dataRows.length / rowsPerPage)));
-      
+
       // Reset to first page when data changes
       setCurrentPage(1);
-      
+
       // Set headers based on first row if useFirstRowAsHeader is true
       if (useFirstRowAsHeader && data.length > 0) {
         setHeaders(data[0]);
@@ -68,10 +68,12 @@ const CsvViewerPage: React.FC = () => {
           setParsedData(data);
         }
       }
-      
+
       setError(null);
     } catch (err) {
-      setError(`Failed to parse CSV: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Failed to parse CSV: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
       setParsedData([]);
       setHeaders([]);
     }
@@ -90,7 +92,7 @@ const CsvViewerPage: React.FC = () => {
       setError('Failed to read the file');
     };
     reader.readAsText(file);
-    
+
     // Reset file input
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
@@ -127,7 +129,8 @@ const CsvViewerPage: React.FC = () => {
           CSV Viewer
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Parse CSV data and display it in a structured table format. Paste your CSV data or upload a CSV file to visualize it.
+          Parse CSV data and display it in a structured table format. Paste your
+          CSV data or upload a CSV file to visualize it.
         </p>
       </header>
 
@@ -136,7 +139,7 @@ const CsvViewerPage: React.FC = () => {
           <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text">
             CSV Input
           </h3>
-          
+
           {/* Input Options */}
           <div className="flex flex-wrap gap-4 mb-3">
             <div className="flex items-center">
@@ -147,11 +150,14 @@ const CsvViewerPage: React.FC = () => {
                 onChange={(e) => setUseFirstRowAsHeader(e.target.checked)}
                 className="mr-2 h-4 w-4"
               />
-              <label htmlFor="use-header" className="dark:text-dark-primary-text">
+              <label
+                htmlFor="use-header"
+                className="dark:text-dark-primary-text"
+              >
                 Use first row as header
               </label>
             </div>
-            
+
             <div>
               <label
                 htmlFor="file-upload"
@@ -168,7 +174,7 @@ const CsvViewerPage: React.FC = () => {
                 />
               </label>
             </div>
-            
+
             {csvText && (
               <button
                 onClick={handleClearData}
@@ -178,7 +184,7 @@ const CsvViewerPage: React.FC = () => {
               </button>
             )}
           </div>
-          
+
           {/* Textarea for CSV input */}
           <div>
             <label
@@ -211,7 +217,7 @@ const CsvViewerPage: React.FC = () => {
             <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 dark:text-dark-primary-text flex items-center">
               <FaTable className="mr-2" /> CSV Data
             </h3>
-            
+
             {/* Pagination Controls */}
             {totalPages > 1 && (
               <div className="flex justify-between items-center mb-3">
@@ -250,7 +256,7 @@ const CsvViewerPage: React.FC = () => {
                 </div>
               </div>
             )}
-            
+
             {/* Table */}
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border-2 border-border-color dark:border-dark-border-color">
@@ -270,7 +276,9 @@ const CsvViewerPage: React.FC = () => {
                   {getCurrentPageData().map((row, rowIndex) => (
                     <tr
                       key={`row-${rowIndex}`}
-                      className={rowIndex % 2 === 0 ? 'bg-gray-100 dark:bg-gray-800' : ''}
+                      className={
+                        rowIndex % 2 === 0 ? 'bg-gray-100 dark:bg-gray-800' : ''
+                      }
                     >
                       {row.map((cell, cellIndex) => (
                         <td
@@ -296,7 +304,10 @@ const CsvViewerPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>CSV (Comma-Separated Values)</strong> is a simple file format used to store tabular data, such as a spreadsheet or database. Each line of the file is a data record consisting of one or more fields, separated by commas.
+            <strong>CSV (Comma-Separated Values)</strong> is a simple file
+            format used to store tabular data, such as a spreadsheet or
+            database. Each line of the file is a data record consisting of one
+            or more fields, separated by commas.
           </p>
           <p>
             <strong>CSV format rules:</strong>
@@ -304,8 +315,14 @@ const CsvViewerPage: React.FC = () => {
           <ul className="list-none space-y-1">
             <li>• Fields are separated by commas</li>
             <li>• Records are separated by newlines</li>
-            <li>• Fields containing commas, newlines, or double quotes should be enclosed in double quotes</li>
-            <li>• A double quote in a field must be represented by two double quotes</li>
+            <li>
+              • Fields containing commas, newlines, or double quotes should be
+              enclosed in double quotes
+            </li>
+            <li>
+              • A double quote in a field must be represented by two double
+              quotes
+            </li>
           </ul>
           <p className="mt-2">
             <strong>Common uses:</strong>

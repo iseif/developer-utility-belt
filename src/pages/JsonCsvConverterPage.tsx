@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import Papa from 'papaparse';
-import { FaExchangeAlt, FaClipboard, FaCheck } from 'react-icons/fa';
+import { FaCheck, FaClipboard, FaExchangeAlt } from 'react-icons/fa';
 
 const JsonCsvConverterPage: React.FC = () => {
   const [inputData, setInputData] = useState<string>('');
   const [outputData, setOutputData] = useState<string>('');
-  const [conversionDirection, setConversionDirection] = useState<'json-to-csv' | 'csv-to-json'>('json-to-csv');
+  const [conversionDirection, setConversionDirection] = useState<
+    'json-to-csv' | 'csv-to-json'
+  >('json-to-csv');
   const [firstRowAsHeader, setFirstRowAsHeader] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [copyButtonText, setCopyButtonText] = useState<string>('Copy to Clipboard');
+  const [copyButtonText, setCopyButtonText] =
+    useState<string>('Copy to Clipboard');
   const [copyIcon, setCopyIcon] = useState<React.ReactNode>(<FaClipboard />);
 
   const handleConvert = () => {
@@ -24,19 +27,19 @@ const JsonCsvConverterPage: React.FC = () => {
       if (conversionDirection === 'json-to-csv') {
         // JSON to CSV conversion
         const parsedJson = JSON.parse(inputData);
-        
+
         // Check if the JSON is an array
         if (!Array.isArray(parsedJson)) {
           setError('JSON must be an array of objects for CSV conversion.');
           return;
         }
-        
+
         // Check if the array is empty
         if (parsedJson.length === 0) {
           setOutputData('');
           return;
         }
-        
+
         // Check if the array contains objects
         if (typeof parsedJson[0] !== 'object' || parsedJson[0] === null) {
           setError('JSON must contain an array of objects for CSV conversion.');
@@ -45,9 +48,9 @@ const JsonCsvConverterPage: React.FC = () => {
 
         const csvData = Papa.unparse(parsedJson, {
           header: true, // Include header row
-          skipEmptyLines: true
+          skipEmptyLines: true,
         });
-        
+
         setOutputData(csvData);
       } else {
         // CSV to JSON conversion
@@ -55,18 +58,20 @@ const JsonCsvConverterPage: React.FC = () => {
           header: firstRowAsHeader,
           skipEmptyLines: true,
         });
-        
+
         if (results.errors && results.errors.length > 0) {
           setError(`CSV parsing error: ${results.errors[0].message}`);
           return;
         }
-        
+
         // Format the JSON with indentation for readability
         const formattedJson = JSON.stringify(results.data, null, 2);
         setOutputData(formattedJson);
       }
     } catch (err) {
-      setError(`Conversion error: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(
+        `Conversion error: ${err instanceof Error ? err.message : 'Unknown error'}`
+      );
     }
   };
 
@@ -93,7 +98,7 @@ const JsonCsvConverterPage: React.FC = () => {
   };
 
   const toggleConversionDirection = () => {
-    setConversionDirection(prev => 
+    setConversionDirection((prev) =>
       prev === 'json-to-csv' ? 'csv-to-json' : 'json-to-csv'
     );
     // Clear outputs when changing direction
@@ -108,7 +113,8 @@ const JsonCsvConverterPage: React.FC = () => {
           JSON ↔ CSV Converter
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Convert data between JSON and CSV formats. Easily transform JSON arrays of objects to CSV tables and vice versa.
+          Convert data between JSON and CSV formats. Easily transform JSON
+          arrays of objects to CSV tables and vice versa.
         </p>
       </header>
 
@@ -116,9 +122,12 @@ const JsonCsvConverterPage: React.FC = () => {
         <section className="space-y-4 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-3 sm:space-y-0 border-b-2 border-border-color dark:border-dark-border-color pb-3">
             <h3 className="text-lg font-semibold dark:text-dark-primary-text">
-              {conversionDirection === 'json-to-csv' ? 'JSON to CSV' : 'CSV to JSON'} Converter
+              {conversionDirection === 'json-to-csv'
+                ? 'JSON to CSV'
+                : 'CSV to JSON'}{' '}
+              Converter
             </h3>
-            
+
             <div className="flex items-center space-x-3">
               {/* Direction Toggle */}
               <button
@@ -128,7 +137,7 @@ const JsonCsvConverterPage: React.FC = () => {
                 <FaExchangeAlt className="mr-2" />
                 Switch Direction
               </button>
-              
+
               {/* First Row as Header Checkbox (only for CSV to JSON) */}
               {conversionDirection === 'csv-to-json' && (
                 <label className="flex items-center text-sm text-primary-text dark:text-dark-primary-text">
@@ -170,7 +179,7 @@ const JsonCsvConverterPage: React.FC = () => {
           <div className="flex justify-center">
             <button
               onClick={handleConvert}
-              className="px-4 py-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-dark-accent text-primary-text dark:text-dark-primary-bg font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-dark-primary-bg"
+              className="px-4 py-2 border-2 border-border-color dark:border-dark-border-color bg-accent dark:bg-sky-900 text-primary-text dark:text-dark-primary-text font-semibold shadow-solid dark:shadow-dark-solid hover:bg-primary-bg dark:hover:bg-sky-700"
             >
               Convert
             </button>
@@ -192,7 +201,8 @@ const JsonCsvConverterPage: React.FC = () => {
                   htmlFor="output-data"
                   className="block font-semibold dark:text-dark-primary-text"
                 >
-                  Output {conversionDirection === 'json-to-csv' ? 'CSV' : 'JSON'}:
+                  Output{' '}
+                  {conversionDirection === 'json-to-csv' ? 'CSV' : 'JSON'}:
                 </label>
                 <button
                   onClick={handleCopy}
@@ -221,19 +231,35 @@ const JsonCsvConverterPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>JSON (JavaScript Object Notation)</strong> is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.
+            <strong>JSON (JavaScript Object Notation)</strong> is a lightweight
+            data-interchange format that is easy for humans to read and write
+            and easy for machines to parse and generate.
           </p>
           <p>
-            <strong>CSV (Comma-Separated Values)</strong> is a simple file format used to store tabular data, such as a spreadsheet or database.
+            <strong>CSV (Comma-Separated Values)</strong> is a simple file
+            format used to store tabular data, such as a spreadsheet or
+            database.
           </p>
           <p className="mt-2">
             <strong>Conversion limitations:</strong>
           </p>
           <ul className="list-disc list-inside ml-4 space-y-1">
-            <li>JSON to CSV works best with flat arrays of objects (no nested objects or arrays).</li>
-            <li>CSV to JSON will create an array of objects (when using headers) or an array of arrays.</li>
-            <li>Complex nested JSON structures may not convert properly to CSV format.</li>
-            <li>CSV files with inconsistent columns may produce unexpected results.</li>
+            <li>
+              JSON to CSV works best with flat arrays of objects (no nested
+              objects or arrays).
+            </li>
+            <li>
+              CSV to JSON will create an array of objects (when using headers)
+              or an array of arrays.
+            </li>
+            <li>
+              Complex nested JSON structures may not convert properly to CSV
+              format.
+            </li>
+            <li>
+              CSV files with inconsistent columns may produce unexpected
+              results.
+            </li>
           </ul>
           <p className="mt-2">
             <strong>When to use:</strong>

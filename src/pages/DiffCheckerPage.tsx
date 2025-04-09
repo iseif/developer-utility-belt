@@ -32,7 +32,8 @@ const DiffCheckerPage: React.FC = () => {
           Diff Checker
         </h1>
         <p className="mb-6 text-gray-700 dark:text-gray-300">
-          Compare two texts and highlight the differences between them. This tool performs character-by-character comparison to identify changes.
+          Compare two texts and highlight the differences between them. This
+          tool performs character-by-character comparison to identify changes.
         </p>
       </header>
 
@@ -119,18 +120,24 @@ const DiffCheckerPage: React.FC = () => {
         </h3>
         <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>
-            <strong>Diff Checking</strong> is the process of finding and highlighting differences between two texts. This tool performs character-by-character comparison to identify changes.
+            <strong>Diff Checking</strong> is the process of finding and
+            highlighting differences between two texts. This tool performs
+            character-by-character comparison to identify changes.
           </p>
           <p>
             <strong>Color coding:</strong>
           </p>
           <ul className="list-none space-y-1">
             <li>
-              <span className="px-1 py-0.5 rounded-sm bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-100 border border-green-400 dark:border-green-600">Green highlighted text</span>
+              <span className="px-1 py-0.5 rounded-sm bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-100 border border-green-400 dark:border-green-600">
+                Green highlighted text
+              </span>
               <span className="ml-2">indicates added content</span>
             </li>
             <li>
-              <span className="px-1 py-0.5 rounded-sm bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-100 border border-red-400 dark:border-red-600 line-through">Red strikethrough text</span>
+              <span className="px-1 py-0.5 rounded-sm bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-100 border border-red-400 dark:border-red-600 line-through">
+                Red strikethrough text
+              </span>
               <span className="ml-2">indicates removed content</span>
             </li>
           </ul>
