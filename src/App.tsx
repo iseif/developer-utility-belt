@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import AppLayout from './components/layout/AppLayout';
 import AppRouter from './Router';
+import ScrollToTop from './components/common/ScrollToTop';
 
 function App() {
   // Theme state ('light' or 'dark')
@@ -42,6 +43,7 @@ function App() {
       isNavOpen={isNavOpen}
       toggleNav={toggleNav}
     >
+      <ScrollToTop />
       <AppRouter />
     </AppLayout>
   );
