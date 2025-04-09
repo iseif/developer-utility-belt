@@ -22,6 +22,7 @@ import CsvViewerPage from './pages/CsvViewerPage';
 import JsonCsvConverterPage from './pages/JsonCsvConverterPage';
 import DataGeneratorPage from './pages/DataGeneratorPage';
 import GradientGeneratorPage from './pages/GradientGeneratorPage';
+import SvgOptimizerPage from './pages/SvgOptimizerPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -32,8 +33,14 @@ const AppRouter: React.FC = () => {
       <Route path="/diff" element={<DiffCheckerPage />} />
       <Route path="/timestamp" element={<TimestampConverterPage />} />
       <Route path="/url-encode-decode" element={<UrlEncoderDecoderPage />} />
-      <Route path="/base64-encode-decode" element={<Base64EncoderDecoderPage />} />
-      <Route path="/html-entity-encode-decode" element={<HtmlEntityEncoderDecoderPage />} />
+      <Route
+        path="/base64-encode-decode"
+        element={<Base64EncoderDecoderPage />}
+      />
+      <Route
+        path="/html-entity-encode-decode"
+        element={<HtmlEntityEncoderDecoderPage />}
+      />
       <Route path="/jwt-debugger" element={<JwtDebuggerPage />} />
       <Route path="/ip-info" element={<IpInfoPage />} />
       <Route path="/user-agent-parser" element={<UserAgentParserPage />} />
@@ -46,6 +53,7 @@ const AppRouter: React.FC = () => {
       <Route path="/json-csv-converter" element={<JsonCsvConverterPage />} />
       <Route path="/data-generator" element={<DataGeneratorPage />} />
       <Route path="/gradient-generator" element={<GradientGeneratorPage />} />
+      <Route path="/svg-optimizer" element={<SvgOptimizerPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

@@ -19,6 +19,7 @@ import {
   FaSearch,
   FaSortAlphaDown,
   FaTable,
+  FaVectorSquare,
 } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
@@ -161,6 +162,13 @@ const HomePage: React.FC = () => {
         description:
           'Create beautiful CSS gradients with a visual editor for your web projects.',
         icon: <FaPalette className="align-middle" />,
+      },
+      {
+        name: 'SVG Optimizer',
+        path: '/svg-optimizer',
+        description:
+          'Optimize SVG files by removing unnecessary data and reducing file size while preserving appearance.',
+        icon: <FaVectorSquare className="align-middle" />,
       },
     ],
   };

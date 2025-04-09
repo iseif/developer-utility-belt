@@ -70,6 +70,7 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
       items: [
         { name: 'Color Tools', path: '/color-tools' },
         { name: 'Gradient Generator', path: '/gradient-generator' },
+        { name: 'SVG Optimizer', path: '/svg-optimizer' },
       ],
     },
   ];
