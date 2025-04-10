@@ -180,6 +180,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
         'Optimize SVG files by removing unnecessary data and reducing file size while preserving appearance.',
       icon: <FaVectorSquare className="align-middle" />,
     },
+    {
+      name: 'Unit Converter (CSS)',
+      path: '/unit-converter',
+      description:
+        'Convert between CSS units like px, em, rem, pt, vw, and vh with adjustable base font size.',
+      icon: <FaExchangeAlt className="align-middle" />,
+    },
   ],
 };
 
