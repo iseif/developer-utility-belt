@@ -187,6 +187,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
         'Convert between CSS units like px, em, rem, pt, vw, and vh with adjustable base font size.',
       icon: <FaExchangeAlt className="align-middle" />,
     },
+    {
+      name: 'Layout Generator',
+      path: '/layout-generator',
+      description:
+        'Visually design and generate CSS code for Flexbox and Grid layouts.',
+      icon: <FaVectorSquare className="align-middle" />,
+    },
   ],
 };
 

@@ -54,7 +54,9 @@ const JsonCsvConverterPage: React.FC = () => {
         setOutputData(csvData);
       } else {
         // CSV to JSON conversion
-        const results = Papa.parse<any>(inputData, {
+        const results = Papa.parse<
+          Record<string, string | number | boolean | null>
+        >(inputData, {
           header: firstRowAsHeader,
           skipEmptyLines: true,
         });

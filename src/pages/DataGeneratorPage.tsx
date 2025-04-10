@@ -150,7 +150,7 @@ const DataGeneratorPage: React.FC = () => {
       case 'color':
         return faker.color.rgb();
       case 'username':
-        return faker.internet.userName();
+        return faker.internet.username();
       case 'password':
         return faker.internet.password();
       default:
@@ -184,7 +184,7 @@ const DataGeneratorPage: React.FC = () => {
       // Generate records
       const records = [];
       for (let i = 0; i < recordCount; i++) {
-        const record: Record<string, any> = {};
+        const record: Record<string, unknown> = {};
         fields.forEach((field) => {
           record[field.name] = generateValue(field.type);
         });

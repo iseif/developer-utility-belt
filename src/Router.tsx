@@ -24,6 +24,7 @@ import DataGeneratorPage from './pages/DataGeneratorPage';
 import GradientGeneratorPage from './pages/GradientGeneratorPage';
 import SvgOptimizerPage from './pages/SvgOptimizerPage';
 import UnitConverterPage from './pages/UnitConverterPage';
+import LayoutGeneratorPage from './pages/LayoutGeneratorPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -56,6 +57,7 @@ const AppRouter: React.FC = () => {
       <Route path="/gradient-generator" element={<GradientGeneratorPage />} />
       <Route path="/svg-optimizer" element={<SvgOptimizerPage />} />
       <Route path="/unit-converter" element={<UnitConverterPage />} />
+      <Route path="/layout-generator" element={<LayoutGeneratorPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />
