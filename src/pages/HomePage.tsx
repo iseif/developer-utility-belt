@@ -1,178 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  FaBalanceScale,
-  FaCalculator,
-  FaClock,
-  FaCode,
-  FaCompress,
-  FaDatabase,
-  FaEdit,
-  FaExchangeAlt,
-  FaFont,
-  FaGlobe,
-  FaInfoCircle,
-  FaLink,
-  FaLock,
-  FaPalette,
-  FaRocket,
-  FaSearch,
-  FaSortAlphaDown,
-  FaTable,
-  FaVectorSquare,
-} from 'react-icons/fa';
+import { FaInfoCircle, FaRocket } from 'react-icons/fa';
+import { toolsByCategory } from '../data/toolsData';
 
 const HomePage: React.FC = () => {
-  // Organize tools by category
-  const toolsByCategory = {
-    'Code & Data': [
-      {
-        name: 'Code Formatter',
-        path: '/formatter',
-        description:
-          'Beautify and format your code with proper indentation and syntax.',
-        icon: <FaEdit className="align-middle" />,
-      },
-      {
-        name: 'Code Minifier',
-        path: '/minifier',
-        description:
-          'Minify JavaScript and CSS code to reduce file size for production.',
-        icon: <FaCompress className="align-middle" />,
-      },
-      {
-        name: 'JSON Tools',
-        path: '/json-tools',
-        description:
-          'Validate, view, and format JSON data with tree visualization.',
-        icon: <FaSearch className="align-middle" />,
-      },
-      {
-        name: 'CSV Viewer',
-        path: '/csv-viewer',
-        description:
-          'Parse CSV data and display it in a structured table format with pagination.',
-        icon: <FaTable className="align-middle" />,
-      },
-      {
-        name: 'JSON <-> CSV Converter',
-        path: '/json-csv-converter',
-        description:
-          'Convert between JSON arrays and CSV data formats with ease.',
-        icon: <FaExchangeAlt className="align-middle" />,
-      },
-      {
-        name: 'Mock Data Generator',
-        path: '/data-generator',
-        description:
-          'Generate realistic mock data based on your schema definition in JSON or CSV format.',
-        icon: <FaDatabase className="align-middle" />,
-      },
-      {
-        name: 'Diff Checker',
-        path: '/diff',
-        description:
-          'Compare two text blocks and highlight the differences between them.',
-        icon: <FaBalanceScale className="align-middle" />,
-      },
-      {
-        name: 'Case Converter',
-        path: '/case-converter',
-        description:
-          'Convert text between various case formats like camelCase, PascalCase, snake_case, etc.',
-        icon: <FaFont className="align-middle" />,
-      },
-      {
-        name: 'Line Sorter',
-        path: '/line-tools',
-        description:
-          'Sort lines alphabetically and remove duplicates from multi-line text.',
-        icon: <FaSortAlphaDown className="align-middle" />,
-      },
-      {
-        name: 'Text Counter',
-        path: '/counter',
-        description:
-          'Count characters, words, lines, and estimate tokens in your text.',
-        icon: <FaCalculator className="align-middle" />,
-      },
-    ],
-    'Encoding & Conversion': [
-      {
-        name: 'URL Encoder/Decoder',
-        path: '/url-encode-decode',
-        description:
-          'Encode or decode URLs and query parameters for web applications.',
-        icon: <FaLink className="align-middle" />,
-      },
-      {
-        name: 'Base64 Encoder/Decoder',
-        path: '/base64-encode-decode',
-        description: 'Encode or decode data to and from Base64 format.',
-        icon: <FaExchangeAlt className="align-middle" />,
-      },
-      {
-        name: 'HTML Entity Encoder/Decoder',
-        path: '/html-entity-encode-decode',
-        description: 'Convert special characters to and from HTML entities.',
-        icon: <FaCode className="align-middle" />,
-      },
-      {
-        name: 'Timestamp Converter',
-        path: '/timestamp',
-        description:
-          'Convert between Unix timestamps and human-readable date formats.',
-        icon: <FaClock className="align-middle" />,
-      },
-      {
-        name: 'JWT Debugger',
-        path: '/jwt-debugger',
-        description:
-          'Decode and inspect JSON Web Tokens to verify their contents.',
-        icon: <FaLock className="align-middle" />,
-      },
-    ],
-    'Network & Info': [
-      {
-        name: 'IP Address Info',
-        path: '/ip-info',
-        description:
-          'Get details about your public IP address and geolocation data.',
-        icon: <FaGlobe className="align-middle" />,
-      },
-      {
-        name: 'User Agent Parser',
-        path: '/user-agent-parser',
-        description:
-          'Parse and analyze User Agent strings to extract browser and OS information.',
-        icon: <FaSearch className="align-middle" />,
-      },
-    ],
-    'Graphics & Design': [
-      {
-        name: 'Color Tools',
-        path: '/color-tools',
-        description:
-          'Color picker, format converter, and contrast checker for web accessibility.',
-        icon: <FaPalette className="align-middle" />,
-      },
-      {
-        name: 'Gradient Generator',
-        path: '/gradient-generator',
-        description:
-          'Create beautiful CSS gradients with a visual editor for your web projects.',
-        icon: <FaPalette className="align-middle" />,
-      },
-      {
-        name: 'SVG Optimizer',
-        path: '/svg-optimizer',
-        description:
-          'Optimize SVG files by removing unnecessary data and reducing file size while preserving appearance.',
-        icon: <FaVectorSquare className="align-middle" />,
-      },
-    ],
-  };
-
   return (
     <div className="p-4 space-y-8">
       <header>
@@ -201,20 +32,29 @@ const HomePage: React.FC = () => {
             accessible from your browser with no installation required.
           </p>
           <p>
-            <strong>How to use:</strong> Select any tool from the categories
-            below or from the navigation menu. Each tool operates entirely in
-            your browser for maximum privacy and speed.
+            <strong>Privacy First:</strong> All tools run entirely in your
+            browser. Your data never leaves your device, making these tools safe
+            for sensitive information.
+          </p>
+          <p>
+            <strong>How to Use:</strong> Select a tool from the navigation menu
+            or from the categories below to get started.
           </p>
         </div>
       </section>
 
       {/* Tools by Category */}
-      <div className="space-y-8">
+      <section className="space-y-8">
+        <h2 className="text-xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
+          <FaInfoCircle className="inline-block align-middle mr-2" /> Available
+          Tools
+        </h2>
+
         {Object.entries(toolsByCategory).map(([category, tools]) => (
-          <section key={category} className="space-y-4">
-            <h2 className="text-2xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
+          <div key={category} className="space-y-4">
+            <h3 className="text-2xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
               {category}
-            </h2>
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {tools.map((tool) => (
                 <Link
@@ -223,13 +63,13 @@ const HomePage: React.FC = () => {
                   className="group block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out"
                 >
                   <div className="flex items-start">
-                    <span className="text-2xl mr-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-150">
+                    <div className="text-2xl mr-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-150">
                       {tool.icon}
-                    </span>
+                    </div>
                     <div>
-                      <h3 className="text-xl font-bold mb-1 text-primary-text dark:text-dark-primary-text">
+                      <h4 className="text-xl font-bold mb-1 text-primary-text dark:text-dark-primary-text">
                         {tool.name}
-                      </h3>
+                      </h4>
                       <p className="text-sm text-primary-text dark:text-dark-primary-text">
                         {tool.description}
                       </p>
@@ -238,31 +78,16 @@ const HomePage: React.FC = () => {
                 </Link>
               ))}
             </div>
-          </section>
+          </div>
         ))}
-      </div>
-
-      {/* About Section */}
-      <section className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid mt-8">
-        <h2 className="text-xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 mb-4 dark:text-dark-primary-text">
-          <span className="inline-flex items-center">
-            <FaInfoCircle className="inline-block align-middle mr-2" /> About
-            This Project
-          </span>
-        </h2>
-        <div className="text-primary-text dark:text-dark-primary-text space-y-2">
-          <p>
-            The Developer Utility Belt is an open-source collection of tools
-            built with React and TypeScript. It features a Neo-Brutalist design
-            aesthetic with light and dark mode support.
-          </p>
-          <p>
-            <strong>Privacy First:</strong> All tools process data entirely in
-            your browser. No information is sent to any server, making these
-            utilities perfect for working with sensitive data.
-          </p>
-        </div>
       </section>
+
+      {/* Footer */}
+      <footer className="mt-8 pt-4 border-t-2 border-border-color dark:border-dark-border-color text-center text-sm text-secondary-text dark:text-dark-secondary-text">
+        <p>
+          Developer Utility Belt — All tools run client-side for your privacy.
+        </p>
+      </footer>
     </div>
   );
 };

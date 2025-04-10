@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
+import { getNavCategories } from '../../data/toolsData';
 
 interface NavProps {
   isNavOpen: boolean;
 }
 
 const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
-  // State to track which categories are expanded
+  // Get nav categories from the centralized data
+  const navCategories = getNavCategories();
+
+  // Initialize expandedCategories state dynamically from navCategories
   const [expandedCategories, setExpandedCategories] = useState<
     Record<string, boolean>
-  >({
-    General: true,
-    'Code & Data': true,
-    'Encoding & Conversion': true,
-    'Network & Info': true,
-    'Graphics & Design': true,
+  >(() => {
+    // Create an object with all categories set to expanded by default
+    const initialState: Record<string, boolean> = {};
+    navCategories.forEach((category) => {
+      initialState[category.name] = true;
+    });
+    return initialState;
   });
 
   // Toggle category expansion
@@ -23,59 +28,6 @@ const Nav: React.FC<NavProps> = ({ isNavOpen }) => {
       [categoryName]: !prev[categoryName],
     }));
   };
-
-  // Organize tools by category to match HomePage structure
-  const navCategories = [
-    {
-      name: 'General',
-      items: [{ name: 'Home', path: '/' }],
-    },
-    {
-      name: 'Code & Data',
-      items: [
-        { name: 'Code Formatter', path: '/formatter' },
-        { name: 'Code Minifier', path: '/minifier' },
-        { name: 'JSON Tools', path: '/json-tools' },
-        { name: 'CSV Viewer', path: '/csv-viewer' },
-        { name: 'JSON <-> CSV', path: '/json-csv-converter' },
-        { name: 'Mock Data Generator', path: '/data-generator' },
-        { name: 'Diff Checker', path: '/diff' },
-        { name: 'Case Converter', path: '/case-converter' },
-        { name: 'Line Sorter', path: '/line-tools' },
-        { name: 'Text Counter', path: '/counter' },
-      ],
-    },
-    {
-      name: 'Encoding & Conversion',
-      items: [
-        { name: 'URL Encoder/Decoder', path: '/url-encode-decode' },
-        { name: 'Base64 Encoder/Decoder', path: '/base64-encode-decode' },
-        {
-          name: 'HTML Entity Encoder/Decoder',
-          path: '/html-entity-encode-decode',
-        },
-        { name: 'Timestamp Converter', path: '/timestamp' },
-        { name: 'JWT Debugger', path: '/jwt-debugger' },
-      ],
-    },
-    {
-      name: 'Network & Info',
-      items: [
-        { name: 'IP Address Info', path: '/ip-info' },
-        { name: 'User Agent Parser', path: '/user-agent-parser' },
-      ],
-    },
-    {
-      name: 'Graphics & Design',
-      items: [
-        { name: 'Color Tools', path: '/color-tools' },
-        { name: 'Gradient Generator', path: '/gradient-generator' },
-        { name: 'SVG Optimizer', path: '/svg-optimizer' },
-      ],
-    },
-  ];
-
-  // We don't need to flatten items anymore since we're rendering by category
 
   return (
     <nav
