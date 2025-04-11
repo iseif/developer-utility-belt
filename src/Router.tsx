@@ -37,6 +37,7 @@ import BaseConverterPage from './pages/BaseConverterPage';
 import HexViewerPage from './pages/HexViewerPage';
 import MimeLookupPage from './pages/MimeLookupPage';
 import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage';
+import HmacGeneratorPage from './pages/HmacGeneratorPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -85,6 +86,7 @@ const AppRouter: React.FC = () => {
         path="/box-shadow-generator"
         element={<BoxShadowGeneratorPage />}
       />
+      <Route path="/hmac-generator" element={<HmacGeneratorPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

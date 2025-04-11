@@ -17,6 +17,7 @@ import {
   FaFont,
   FaGlobe,
   FaHashtag,
+  FaKey,
   FaLink,
   FaLock,
   FaMarkdown,
@@ -198,6 +199,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Generate cryptographic hashes (MD5, SHA-1, SHA-256, SHA-512) for text input.',
       icon: <FaHashtag className="align-middle" />,
+    },
+    {
+      name: 'HMAC Generator',
+      path: '/hmac-generator',
+      description:
+        'Generate Hash-based Message Authentication Codes (HMAC) using various hash algorithms.',
+      icon: <FaKey className="align-middle" />,
     },
     {
       name: 'Password Generator',
