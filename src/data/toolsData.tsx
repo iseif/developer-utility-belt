@@ -9,6 +9,7 @@ import {
   FaDatabase,
   FaEdit,
   FaExchangeAlt,
+  FaFingerprint,
   FaFont,
   FaGlobe,
   FaHashtag,
@@ -171,6 +172,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Generate strong, random passwords based on configurable criteria.',
       icon: <FaLock className="align-middle" />,
+    },
+    {
+      name: 'UUID Generator',
+      path: '/uuid-generator',
+      description:
+        'Generate Version 4 (random) UUIDs for use in applications and databases.',
+      icon: <FaFingerprint className="align-middle" />,
     },
   ],
   'Network & Info': [
