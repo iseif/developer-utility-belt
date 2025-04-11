@@ -17,8 +17,7 @@ const CronHelperPage: React.FC = () => {
   const [explanation, setExplanation] = useState<string>('');
   const [nextRuns, setNextRuns] = useState<string[]>([]);
   const [error, setError] = useState<string>('');
-  const [copyButtonText, setCopyButtonText] =
-    useState<string>('Copy Expression');
+  const [copyButtonText, setCopyButtonText] = useState<string>('Copy');
 
   // Get the browser's timezone
   const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -140,7 +139,7 @@ const CronHelperPage: React.FC = () => {
       console.error('Failed to copy text: ', err);
       setCopyButtonText('Copy Failed!');
     } finally {
-      setTimeout(() => setCopyButtonText('Copy Expression'), 2000);
+      setTimeout(() => setCopyButtonText('Copy'), 2000);
     }
   };
 
@@ -258,7 +257,7 @@ const CronHelperPage: React.FC = () => {
 
           {/* Generated Cron Expression */}
           <div className="mt-4">
-            <div className="flex justify-between items-center mb-1">
+            <div className="flex justify-between items-center mb-2">
               <label
                 htmlFor="generated-cron"
                 className="font-semibold dark:text-dark-primary-text"
