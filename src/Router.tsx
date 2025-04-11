@@ -35,6 +35,7 @@ import TextEscaperPage from './pages/TextEscaperPage';
 import SlugifyPage from './pages/SlugifyPage';
 import BaseConverterPage from './pages/BaseConverterPage';
 import HexViewerPage from './pages/HexViewerPage';
+import MimeLookupPage from './pages/MimeLookupPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -78,6 +79,7 @@ const AppRouter: React.FC = () => {
       <Route path="/slugify" element={<SlugifyPage />} />
       <Route path="/base-converter" element={<BaseConverterPage />} />
       <Route path="/hex-viewer" element={<HexViewerPage />} />
+      <Route path="/mime-lookup" element={<MimeLookupPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

@@ -10,6 +10,7 @@ import {
   FaEdit,
   FaExchangeAlt,
   FaExchangeAlt as FaConvert,
+  FaFileAlt,
   FaFileCode,
   FaFingerprint,
   FaFont,
@@ -233,6 +234,12 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Reference for HTTP status codes with descriptions and categories.',
       icon: <FaServer className="align-middle" />,
+    },
+    {
+      name: 'MIME Type Lookup',
+      path: '/mime-lookup',
+      description: 'Find MIME types for file extensions and vice versa.',
+      icon: <FaFileAlt className="align-middle" />,
     },
   ],
   'Graphics & Design': [
