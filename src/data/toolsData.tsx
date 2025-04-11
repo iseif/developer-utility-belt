@@ -6,6 +6,7 @@ import {
   FaClock,
   FaCode,
   FaCompress,
+  FaCube,
   FaDatabase,
   FaEdit,
   FaExchangeAlt,
@@ -256,6 +257,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Create beautiful CSS gradients with a visual editor for your web projects.',
       icon: <FaPalette className="align-middle" />,
+    },
+    {
+      name: 'Box Shadow Generator',
+      path: '/box-shadow-generator',
+      description:
+        'Create and customize CSS box shadows with a visual interface.',
+      icon: <FaCube className="align-middle" />,
     },
     {
       name: 'SVG Optimizer',

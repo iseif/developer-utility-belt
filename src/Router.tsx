@@ -36,6 +36,7 @@ import SlugifyPage from './pages/SlugifyPage';
 import BaseConverterPage from './pages/BaseConverterPage';
 import HexViewerPage from './pages/HexViewerPage';
 import MimeLookupPage from './pages/MimeLookupPage';
+import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -80,6 +81,10 @@ const AppRouter: React.FC = () => {
       <Route path="/base-converter" element={<BaseConverterPage />} />
       <Route path="/hex-viewer" element={<HexViewerPage />} />
       <Route path="/mime-lookup" element={<MimeLookupPage />} />
+      <Route
+        path="/box-shadow-generator"
+        element={<BoxShadowGeneratorPage />}
+      />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />
