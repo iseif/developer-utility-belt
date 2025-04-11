@@ -42,7 +42,7 @@ console.log(greet('World'));
 
 [Visit Developer Utility Belt GitHub page](https://github.com/iseif/developer-utility-belt)
 
-![Placeholder Image](https://github.com/iseif/developer-utility-belt/blob/master/public/android-chrome-192x192.png?raw=true)
+![Placeholder Image](https://raw.githubusercontent.com/iseif/developer-utility-belt/refs/heads/master/public/android-chrome-192x192.png)
 
 ### Tables
 
