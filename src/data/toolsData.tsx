@@ -2,6 +2,7 @@ import React from 'react';
 import {
   FaBalanceScale,
   FaCalculator,
+  FaCalendarAlt,
   FaClock,
   FaCode,
   FaCompress,
@@ -106,6 +107,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Count characters, words, lines, and estimate tokens in your text.',
       icon: <FaCalculator className="align-middle" />,
+    },
+    {
+      name: 'Cron Helper',
+      path: '/cron-helper',
+      description:
+        'Build, test, and understand cron expressions for scheduling jobs.',
+      icon: <FaCalendarAlt className="align-middle" />,
     },
   ],
   'Encoding & Conversion': [

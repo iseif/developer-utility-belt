@@ -1376,6 +1376,18 @@ cookie@^1.0.1:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-1.0.2.tgz#27360701532116bd3f1f9416929d176afe1e4610"
   integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
 
+cron-parser@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/cron-parser/-/cron-parser-5.1.1.tgz#89e322245f830669949a5c526487ebfda1be65e0"
+  integrity sha512-xNhwjTUTJcvevF4EvOxB3xYpEKC/qOAmykR+2Qf91ARIfdbjStUwo8qpem6jjzdwFgoo4pnf3sS264xG0G858w==
+  dependencies:
+    luxon "^3.6.1"
+
+cronstrue@^2.59.0:
+  version "2.59.0"
+  resolved "https://registry.yarnpkg.com/cronstrue/-/cronstrue-2.59.0.tgz#a250b2b04eebabf35518725018e501ff94370fb1"
+  integrity sha512-YKGmAy84hKH+hHIIER07VCAHf9u0Ldelx1uU6EBxsRPDXIA1m5fsKmJfyC3xBhw6cVC/1i83VdbL4PvepTrt8A==
+
 cross-fetch@^3.1.5:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.2.0.tgz#34e9192f53bc757d6614304d9e5e6fb4edb782e3"
@@ -2626,6 +2638,11 @@ lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
+
+luxon@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.6.1.tgz#d283ffc4c0076cb0db7885ec6da1c49ba97e47b0"
+  integrity sha512-tJLxrKJhO2ukZ5z0gyjY1zPh3Rh88Ej9P7jNrZiHMUXHae1yvI2imgOZtL1TO8TW6biMMKfTtAOoEJANgtWBMQ==
 
 math-intrinsics@^1.1.0:
   version "1.1.0"

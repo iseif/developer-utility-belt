@@ -20,6 +20,8 @@
     "@types/lodash-es": "^4.17.12",
     "@types/zxcvbn": "^4.4.5",
     "@uiw/react-color": "^2.4.5",
+    "cron-parser": "^5.1.1",
+    "cronstrue": "^2.59.0",
     "csso": "^5.0.5",
     "date-fns": "^4.1.0",
     "diff": "^7.0.0",
