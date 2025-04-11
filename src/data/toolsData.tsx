@@ -247,6 +247,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       icon: <FaServer className="align-middle" />,
     },
     {
+      name: 'HTTP Headers',
+      path: '/http-headers',
+      description:
+        'Reference for HTTP request and response headers with descriptions.',
+      icon: <FaServer className="align-middle" />,
+    },
+    {
       name: 'MIME Type Lookup',
       path: '/mime-lookup',
       description: 'Find MIME types for file extensions and vice versa.',
@@ -303,6 +310,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       path: '/http-status-codes',
       description:
         'Reference for HTTP status codes with descriptions and usage.',
+      icon: <FaServer className="align-middle" />,
+    },
+    {
+      name: 'HTTP Headers',
+      path: '/http-headers',
+      description:
+        'Reference for HTTP request and response headers with descriptions.',
       icon: <FaServer className="align-middle" />,
     },
     {

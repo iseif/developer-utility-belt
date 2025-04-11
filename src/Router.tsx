@@ -40,6 +40,7 @@ import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage';
 import HmacGeneratorPage from './pages/HmacGeneratorPage';
 import AsciiTablePage from './pages/AsciiTablePage';
 import HtmlEntitiesPage from './pages/HtmlEntitiesPage';
+import HttpHeadersPage from './pages/HttpHeadersPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -79,6 +80,7 @@ const AppRouter: React.FC = () => {
       <Route path="/markdown-previewer" element={<MarkdownPreviewerPage />} />
       <Route path="/uuid-generator" element={<UuidGeneratorPage />} />
       <Route path="/http-status-codes" element={<HttpStatusCodesPage />} />
+      <Route path="/http-headers" element={<HttpHeadersPage />} />
       <Route path="/text-escaper" element={<TextEscaperPage />} />
       <Route path="/slugify" element={<SlugifyPage />} />
       <Route path="/base-converter" element={<BaseConverterPage />} />
