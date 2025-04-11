@@ -17,10 +17,12 @@ import {
   FaLock,
   FaMarkdown,
   FaPalette,
+  FaQuoteRight,
   FaSearch,
   FaServer,
   FaSortAlphaDown,
   FaTable,
+  FaTag,
   FaVectorSquare,
 } from 'react-icons/fa';
 
@@ -110,6 +112,18 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Count characters, words, lines, and estimate tokens in your text.',
       icon: <FaCalculator className="align-middle" />,
+    },
+    {
+      name: 'Text Escaper/Unescaper',
+      path: '/text-escaper',
+      description: 'Escape and unescape text for JSON, XML, and SQL contexts.',
+      icon: <FaQuoteRight className="align-middle" />,
+    },
+    {
+      name: 'Slugify Text',
+      path: '/slugify',
+      description: 'Convert text into URL-friendly slugs for web applications.',
+      icon: <FaTag className="align-middle" />,
     },
     {
       name: 'Cron Helper',

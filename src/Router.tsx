@@ -31,6 +31,8 @@ import CronHelperPage from './pages/CronHelperPage';
 import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage';
 import UuidGeneratorPage from './pages/UuidGeneratorPage';
 import HttpStatusCodesPage from './pages/HttpStatusCodesPage';
+import TextEscaperPage from './pages/TextEscaperPage';
+import SlugifyPage from './pages/SlugifyPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -70,6 +72,8 @@ const AppRouter: React.FC = () => {
       <Route path="/markdown-previewer" element={<MarkdownPreviewerPage />} />
       <Route path="/uuid-generator" element={<UuidGeneratorPage />} />
       <Route path="/http-status-codes" element={<HttpStatusCodesPage />} />
+      <Route path="/text-escaper" element={<TextEscaperPage />} />
+      <Route path="/slugify" element={<SlugifyPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />
