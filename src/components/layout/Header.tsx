@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center">
         <button
           onClick={toggleNav}
-          className="md:hidden p-2 mr-2 border-2 border-border-color dark:border-dark-border-color text-primary-text dark:text-dark-primary-text hover:bg-accent dark:hover:bg-dark-accent"
+          className="md:hidden p-2 mr-2 border-2 border-border-color dark:border-dark-border-color text-primary-text dark:text-dark-primary-text hover:bg-accent dark:hover:bg-gray-800"
           aria-label="Toggle navigation"
         >
           <svg

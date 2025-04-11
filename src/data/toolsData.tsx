@@ -140,7 +140,7 @@ export const toolsByCategory: Record<string, Tool[]> = {
       icon: <FaExchangeAlt className="align-middle" />,
     },
     {
-      name: 'HTML Entity Encoder/Decoder',
+      name: 'HTML Encoder/Decoder',
       path: '/html-entity-encode-decode',
       description: 'Convert special characters to and from HTML entities.',
       icon: <FaCode className="align-middle" />,
@@ -216,7 +216,7 @@ export const toolsByCategory: Record<string, Tool[]> = {
       name: 'SVG Optimizer',
       path: '/svg-optimizer',
       description:
-        'Optimize SVG files by removing unnecessary data and reducing file size while preserving appearance.',
+        'Optimize SVG files by removing unnecessary data and reducing file size.',
       icon: <FaVectorSquare className="align-middle" />,
     },
     {

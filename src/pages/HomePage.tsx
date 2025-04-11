@@ -1,9 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaInfoCircle, FaRocket } from 'react-icons/fa';
+import { FaInfoCircle, FaRocket, FaStar } from 'react-icons/fa';
 import { toolsByCategory } from '../data/toolsData';
+import { useFavoritesContext } from '../hooks/useFavoritesContext';
+import FavoriteButton from '../components/common/FavoriteButton';
 
 const HomePage: React.FC = () => {
+  const { favorites, toggleFavorite, isFavorite } = useFavoritesContext();
+
+  // Get all tools as a flat array
+  const allTools = Object.values(toolsByCategory).flat();
+
+  // Get favorite tools
+  const favoriteTools = allTools.filter((tool) =>
+    favorites.includes(tool.path)
+  );
+
   return (
     <div className="p-4 space-y-8">
       <header>
@@ -43,24 +55,19 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Tools by Category */}
-      <section className="space-y-8">
-        <h2 className="text-xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
-          <FaInfoCircle className="inline-block align-middle mr-2" /> Available
-          Tools
-        </h2>
-
-        {Object.entries(toolsByCategory).map(([category, tools]) => (
-          <div key={category} className="space-y-4">
-            <h3 className="text-2xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
-              {category}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {tools.map((tool) => (
+      {/* Favorites Section */}
+      {favoriteTools.length > 0 && (
+        <section className="space-y-4">
+          <h2 className="text-xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
+            <FaStar className="inline-block align-middle mr-2 text-yellow-400" />{' '}
+            Your Favorites
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {favoriteTools.map((tool) => (
+              <div key={tool.path} className="relative group">
                 <Link
-                  key={tool.path}
                   to={tool.path}
-                  className="group block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out"
+                  className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out"
                 >
                   <div className="flex items-start">
                     <div className="text-2xl mr-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-150">
@@ -76,6 +83,60 @@ const HomePage: React.FC = () => {
                     </div>
                   </div>
                 </Link>
+                <div className="absolute top-2 right-2">
+                  <FavoriteButton
+                    isFavorite={true}
+                    onClick={() => toggleFavorite(tool.path)}
+                    className="p-1"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Tools by Category */}
+      <section className="space-y-8">
+        <h2 className="text-xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
+          <FaInfoCircle className="inline-block align-middle mr-2" /> Available
+          Tools
+        </h2>
+
+        {Object.entries(toolsByCategory).map(([category, tools]) => (
+          <div key={category} className="space-y-4">
+            <h3 className="text-2xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
+              {category}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {tools.map((tool) => (
+                <div key={tool.path} className="relative group">
+                  <Link
+                    to={tool.path}
+                    className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out"
+                  >
+                    <div className="flex items-start">
+                      <div className="text-2xl mr-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-150">
+                        {tool.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold mb-1 text-primary-text dark:text-dark-primary-text">
+                          {tool.name}
+                        </h4>
+                        <p className="text-sm text-primary-text dark:text-dark-primary-text">
+                          {tool.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                  <div className="absolute top-2 right-2">
+                    <FavoriteButton
+                      isFavorite={isFavorite(tool.path)}
+                      onClick={() => toggleFavorite(tool.path)}
+                      className="p-1"
+                    />
+                  </div>
+                </div>
               ))}
             </div>
           </div>

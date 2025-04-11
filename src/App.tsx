@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import AppLayout from './components/layout/AppLayout';
 import AppRouter from './Router';
 import ScrollToTop from './components/common/ScrollToTop';
+import { FavoritesProvider } from './context/FavoritesContext';
 
 function App() {
   // Theme state ('light' or 'dark')
@@ -37,15 +38,17 @@ function App() {
   const toggleNav = () => setIsNavOpen(!isNavOpen);
 
   return (
-    <AppLayout
-      toggleTheme={toggleTheme}
-      currentTheme={theme}
-      isNavOpen={isNavOpen}
-      toggleNav={toggleNav}
-    >
-      <ScrollToTop />
-      <AppRouter />
-    </AppLayout>
+    <FavoritesProvider>
+      <AppLayout
+        toggleTheme={toggleTheme}
+        currentTheme={theme}
+        isNavOpen={isNavOpen}
+        toggleNav={toggleNav}
+      >
+        <ScrollToTop />
+        <AppRouter />
+      </AppLayout>
+    </FavoritesProvider>
   );
 }
 
