@@ -7,8 +7,7 @@ A comprehensive, fast, and user-friendly web application featuring a collection 
 The goal is to provide a single, reliable online destination for various development tasks like code formatting, data conversion, text manipulation, and more, reducing the need for multiple single-purpose tools.
 
 **Live App**: [https://developer-utility-belt.netlify.app/](https://developer-utility-belt.netlify.app/)  
-**GitHub Repository
-**: [https://github.com/iseif/developer-utility-belt](https://github.com/iseif/developer-utility-belt)
+**GitHub Repository**: [https://github.com/iseif/developer-utility-belt](https://github.com/iseif/developer-utility-belt)
 
 ## Features
 
