@@ -149,6 +149,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
         'Generate cryptographic hashes (MD5, SHA-1, SHA-256, SHA-512) for text input.',
       icon: <FaHashtag className="align-middle" />,
     },
+    {
+      name: 'Password Generator',
+      path: '/password-generator',
+      description:
+        'Generate strong, random passwords based on configurable criteria.',
+      icon: <FaLock className="align-middle" />,
+    },
   ],
   'Network & Info': [
     {
