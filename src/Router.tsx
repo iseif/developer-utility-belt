@@ -28,6 +28,7 @@ import LayoutGeneratorPage from './pages/LayoutGeneratorPage';
 import HashGeneratorPage from './pages/HashGeneratorPage';
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage';
 import CronHelperPage from './pages/CronHelperPage';
+import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -64,6 +65,7 @@ const AppRouter: React.FC = () => {
       <Route path="/hash-generator" element={<HashGeneratorPage />} />
       <Route path="/password-generator" element={<PasswordGeneratorPage />} />
       <Route path="/cron-helper" element={<CronHelperPage />} />
+      <Route path="/markdown-previewer" element={<MarkdownPreviewerPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

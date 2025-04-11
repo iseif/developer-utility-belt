@@ -14,6 +14,7 @@ import {
   FaHashtag,
   FaLink,
   FaLock,
+  FaMarkdown,
   FaPalette,
   FaSearch,
   FaSortAlphaDown,
@@ -114,6 +115,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Build, test, and understand cron expressions for scheduling jobs.',
       icon: <FaCalendarAlt className="align-middle" />,
+    },
+    {
+      name: 'Markdown Previewer',
+      path: '/markdown-previewer',
+      description:
+        'Write and preview Markdown with real-time rendering and GitHub Flavored Markdown support.',
+      icon: <FaMarkdown className="align-middle" />,
     },
   ],
   'Encoding & Conversion': [

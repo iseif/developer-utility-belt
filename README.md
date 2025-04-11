@@ -34,7 +34,7 @@ This application aims to provide a wide range of tools. Currently implemented or
 
 1.  **Clone the repository (if applicable):**
     ```bash
-    # git clone <your-repo-url>
+    # git clone https://github.com/iseif/developer-utility-belt
     # cd developer-utility-belt
     ```
 2.  **Install dependencies:**
