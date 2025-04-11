@@ -18,6 +18,7 @@ import {
   FaMarkdown,
   FaPalette,
   FaSearch,
+  FaServer,
   FaSortAlphaDown,
   FaTable,
   FaVectorSquare,
@@ -195,6 +196,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Parse and analyze User Agent strings to extract browser and OS information.',
       icon: <FaSearch className="align-middle" />,
+    },
+    {
+      name: 'HTTP Status Codes',
+      path: '/http-status-codes',
+      description:
+        'Reference for HTTP status codes with descriptions and categories.',
+      icon: <FaServer className="align-middle" />,
     },
   ],
   'Graphics & Design': [

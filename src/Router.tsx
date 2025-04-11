@@ -30,6 +30,7 @@ import PasswordGeneratorPage from './pages/PasswordGeneratorPage';
 import CronHelperPage from './pages/CronHelperPage';
 import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage';
 import UuidGeneratorPage from './pages/UuidGeneratorPage';
+import HttpStatusCodesPage from './pages/HttpStatusCodesPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -68,6 +69,7 @@ const AppRouter: React.FC = () => {
       <Route path="/cron-helper" element={<CronHelperPage />} />
       <Route path="/markdown-previewer" element={<MarkdownPreviewerPage />} />
       <Route path="/uuid-generator" element={<UuidGeneratorPage />} />
+      <Route path="/http-status-codes" element={<HttpStatusCodesPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />
