@@ -17,8 +17,10 @@ import {
   FaFont,
   FaGlobe,
   FaHashtag,
+  FaHtml5,
   FaKey,
   FaLink,
+  FaList,
   FaLock,
   FaMarkdown,
   FaPalette,
@@ -293,6 +295,35 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Visually design and generate CSS code for Flexbox and Grid layouts.',
       icon: <FaVectorSquare className="align-middle" />,
+    },
+  ],
+  Reference: [
+    {
+      name: 'HTTP Status Codes',
+      path: '/http-status-codes',
+      description:
+        'Reference for HTTP status codes with descriptions and usage.',
+      icon: <FaServer className="align-middle" />,
+    },
+    {
+      name: 'MIME Type Lookup',
+      path: '/mime-lookup',
+      description: 'Look up MIME types by file extension or search by type.',
+      icon: <FaFileAlt className="align-middle" />,
+    },
+    {
+      name: 'ASCII Table',
+      path: '/ascii-table',
+      description:
+        'Reference table for ASCII character codes (0-127) with decimal, hex, octal, and binary values.',
+      icon: <FaList className="align-middle" />,
+    },
+    {
+      name: 'HTML Entities',
+      path: '/html-entities',
+      description:
+        'Searchable reference for HTML character entities with named and numbered codes.',
+      icon: <FaHtml5 className="align-middle" />,
     },
   ],
 };

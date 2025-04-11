@@ -38,6 +38,8 @@ import HexViewerPage from './pages/HexViewerPage';
 import MimeLookupPage from './pages/MimeLookupPage';
 import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage';
 import HmacGeneratorPage from './pages/HmacGeneratorPage';
+import AsciiTablePage from './pages/AsciiTablePage';
+import HtmlEntitiesPage from './pages/HtmlEntitiesPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -87,6 +89,8 @@ const AppRouter: React.FC = () => {
         element={<BoxShadowGeneratorPage />}
       />
       <Route path="/hmac-generator" element={<HmacGeneratorPage />} />
+      <Route path="/ascii-table" element={<AsciiTablePage />} />
+      <Route path="/html-entities" element={<HtmlEntitiesPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />
