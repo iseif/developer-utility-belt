@@ -9,6 +9,7 @@ import {
   FaDatabase,
   FaEdit,
   FaExchangeAlt,
+  FaExchangeAlt as FaConvert,
   FaFingerprint,
   FaFont,
   FaGlobe,
@@ -159,6 +160,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       path: '/html-entity-encode-decode',
       description: 'Convert special characters to and from HTML entities.',
       icon: <FaCode className="align-middle" />,
+    },
+    {
+      name: 'Number Base Converter',
+      path: '/base-converter',
+      description:
+        'Convert numbers between binary, octal, decimal, and hexadecimal bases.',
+      icon: <FaConvert className="align-middle" />,
     },
     {
       name: 'Timestamp Converter',
