@@ -34,6 +34,7 @@ import HttpStatusCodesPage from './pages/HttpStatusCodesPage';
 import TextEscaperPage from './pages/TextEscaperPage';
 import SlugifyPage from './pages/SlugifyPage';
 import BaseConverterPage from './pages/BaseConverterPage';
+import HexViewerPage from './pages/HexViewerPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -76,6 +77,7 @@ const AppRouter: React.FC = () => {
       <Route path="/text-escaper" element={<TextEscaperPage />} />
       <Route path="/slugify" element={<SlugifyPage />} />
       <Route path="/base-converter" element={<BaseConverterPage />} />
+      <Route path="/hex-viewer" element={<HexViewerPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

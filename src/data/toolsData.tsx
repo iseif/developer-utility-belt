@@ -10,6 +10,7 @@ import {
   FaEdit,
   FaExchangeAlt,
   FaExchangeAlt as FaConvert,
+  FaFileCode,
   FaFingerprint,
   FaFont,
   FaGlobe,
@@ -167,6 +168,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Convert numbers between binary, octal, decimal, and hexadecimal bases.',
       icon: <FaConvert className="align-middle" />,
+    },
+    {
+      name: 'Binary/Hex Viewer',
+      path: '/hex-viewer',
+      description:
+        'Display text or hex input as a formatted binary or hexadecimal view, similar to a hex editor.',
+      icon: <FaFileCode className="align-middle" />,
     },
     {
       name: 'Timestamp Converter',
