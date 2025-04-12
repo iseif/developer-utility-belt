@@ -42,6 +42,21 @@ import AsciiTablePage from './pages/AsciiTablePage';
 import HtmlEntitiesPage from './pages/HtmlEntitiesPage';
 import HttpHeadersPage from './pages/HttpHeadersPage';
 import ImageEditorPage from './pages/ImageEditorPage';
+import CheatSheetsIndexPage from './pages/cheat-sheets/CheatSheetsIndexPage';
+import GitCheatSheetPage from './pages/cheat-sheets/GitCheatSheetPage';
+import BashCheatSheetPage from './pages/cheat-sheets/BashCheatSheetPage';
+import DockerCheatSheetPage from './pages/cheat-sheets/DockerCheatSheetPage';
+import SqlCheatSheetPage from './pages/cheat-sheets/SqlCheatSheetPage';
+import PythonCheatSheetPage from './pages/cheat-sheets/PythonCheatSheetPage';
+import JavaScriptCheatSheetPage from './pages/cheat-sheets/JavaScriptCheatSheetPage';
+import CssLayoutCheatSheetPage from './pages/cheat-sheets/CssLayoutCheatSheetPage';
+import RegexCheatSheetPage from './pages/cheat-sheets/RegexCheatSheetPage';
+import TypeScriptCheatSheetPage from './pages/cheat-sheets/TypeScriptCheatSheetPage';
+import ReactHooksCheatSheetPage from './pages/cheat-sheets/ReactHooksCheatSheetPage';
+import JavaCheatSheetPage from './pages/cheat-sheets/JavaCheatSheetPage';
+import SpringBootCheatSheetPage from './pages/cheat-sheets/SpringBootCheatSheetPage';
+import NpmYarnCheatSheetPage from './pages/cheat-sheets/NpmYarnCheatSheetPage';
+import MavenCheatSheetPage from './pages/cheat-sheets/MavenCheatSheetPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -95,6 +110,41 @@ const AppRouter: React.FC = () => {
       <Route path="/ascii-table" element={<AsciiTablePage />} />
       <Route path="/html-entities" element={<HtmlEntitiesPage />} />
       <Route path="/image-editor" element={<ImageEditorPage />} />
+
+      {/* Cheat Sheets Routes */}
+      <Route path="/cheat-sheets" element={<CheatSheetsIndexPage />} />
+      <Route path="/cheat-sheets/git" element={<GitCheatSheetPage />} />
+      <Route path="/cheat-sheets/bash" element={<BashCheatSheetPage />} />
+      <Route path="/cheat-sheets/docker" element={<DockerCheatSheetPage />} />
+      <Route
+        path="/cheat-sheets/npm-yarn"
+        element={<NpmYarnCheatSheetPage />}
+      />
+      <Route path="/cheat-sheets/maven" element={<MavenCheatSheetPage />} />
+      <Route path="/cheat-sheets/sql" element={<SqlCheatSheetPage />} />
+      <Route path="/cheat-sheets/python" element={<PythonCheatSheetPage />} />
+      <Route
+        path="/cheat-sheets/javascript"
+        element={<JavaScriptCheatSheetPage />}
+      />
+      <Route
+        path="/cheat-sheets/css-layout"
+        element={<CssLayoutCheatSheetPage />}
+      />
+      <Route path="/cheat-sheets/regex" element={<RegexCheatSheetPage />} />
+      <Route
+        path="/cheat-sheets/typescript"
+        element={<TypeScriptCheatSheetPage />}
+      />
+      <Route
+        path="/cheat-sheets/react-hooks"
+        element={<ReactHooksCheatSheetPage />}
+      />
+      <Route path="/cheat-sheets/java" element={<JavaCheatSheetPage />} />
+      <Route
+        path="/cheat-sheets/spring-boot"
+        element={<SpringBootCheatSheetPage />}
+      />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

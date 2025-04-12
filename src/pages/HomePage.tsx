@@ -64,12 +64,12 @@ const HomePage: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {favoriteTools.map((tool) => (
-              <div key={tool.path} className="relative group">
+              <div key={tool.path} className="relative group h-full">
                 <Link
                   to={tool.path}
-                  className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out"
+                  className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out h-full flex flex-col"
                 >
-                  <div className="flex items-start">
+                  <div className="flex items-start flex-grow">
                     <div className="text-2xl mr-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-150">
                       {tool.icon}
                     </div>
@@ -110,12 +110,12 @@ const HomePage: React.FC = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {tools.map((tool) => (
-                <div key={tool.path} className="relative group">
+                <div key={tool.path} className="relative group h-full">
                   <Link
                     to={tool.path}
-                    className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out"
+                    className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out h-full flex flex-col"
                   >
-                    <div className="flex items-start">
+                    <div className="flex items-start flex-grow">
                       <div className="text-2xl mr-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-150">
                         {tool.icon}
                       </div>

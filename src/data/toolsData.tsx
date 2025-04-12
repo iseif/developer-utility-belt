@@ -7,8 +7,10 @@ import {
   FaCode,
   FaCompress,
   FaCrop,
+  FaCss3Alt,
   FaCube,
   FaDatabase,
+  FaDocker,
   FaEdit,
   FaExchangeAlt,
   FaExchangeAlt as FaConvert,
@@ -16,23 +18,31 @@ import {
   FaFileCode,
   FaFingerprint,
   FaFont,
+  FaGit,
   FaGlobe,
   FaHashtag,
   FaHtml5,
+  FaJava,
+  FaJs,
   FaKey,
+  FaLeaf,
   FaLink,
   FaList,
   FaLock,
   FaMarkdown,
   FaPalette,
+  FaPython,
   FaQuoteRight,
+  FaRegFileCode,
   FaSearch,
   FaServer,
   FaSortAlphaDown,
   FaTable,
   FaTag,
+  FaTerminal,
   FaVectorSquare,
 } from 'react-icons/fa';
+import { SiApachemaven, SiNpm, SiReact, SiTypescript } from 'react-icons/si';
 
 // Tool interface to define the structure of each tool
 export interface Tool {
@@ -346,6 +356,105 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Searchable reference for HTML character entities with named and numbered codes.',
       icon: <FaHtml5 className="align-middle" />,
+    },
+  ],
+  'Cheat Sheets': [
+    {
+      name: 'Git Commands',
+      path: '/cheat-sheets/git',
+      description:
+        'Comprehensive reference of common Git commands organized by functionality.',
+      icon: <FaGit className="align-middle" />,
+    },
+    {
+      name: 'Bash/Linux Commands',
+      path: '/cheat-sheets/bash',
+      description:
+        'Essential Bash/Linux command-line utilities for file operations, process management, and more.',
+      icon: <FaTerminal className="align-middle" />,
+    },
+    {
+      name: 'Docker CLI',
+      path: '/cheat-sheets/docker',
+      description:
+        'Essential Docker commands for managing containers, images, volumes, networks, and more.',
+      icon: <FaDocker className="align-middle" />,
+    },
+    {
+      name: 'NPM & Yarn',
+      path: '/cheat-sheets/npm-yarn',
+      description:
+        'Common NPM and Yarn commands for package management, dependencies, scripts, and more.',
+      icon: <SiNpm className="align-middle" />,
+    },
+    {
+      name: 'Maven',
+      path: '/cheat-sheets/maven',
+      description:
+        'Essential Maven commands for building, testing, and managing Java projects.',
+      icon: <SiApachemaven className="align-middle" />,
+    },
+    {
+      name: 'SQL',
+      path: '/cheat-sheets/sql',
+      description:
+        'Common SQL commands and syntax for working with relational databases.',
+      icon: <FaDatabase className="align-middle" />,
+    },
+    {
+      name: 'Python',
+      path: '/cheat-sheets/python',
+      description:
+        'Core Python syntax, data structures, and common operations for quick reference.',
+      icon: <FaPython className="align-middle" />,
+    },
+    {
+      name: 'JavaScript (ES6+)',
+      path: '/cheat-sheets/javascript',
+      description:
+        'Modern JavaScript syntax, features, and APIs introduced in ES6 and later versions.',
+      icon: <FaJs className="align-middle" />,
+    },
+    {
+      name: 'TypeScript',
+      path: '/cheat-sheets/typescript',
+      description:
+        'Essential TypeScript types, interfaces, and syntax for type-safe JavaScript development.',
+      icon: <SiTypescript className="align-middle" />,
+    },
+    {
+      name: 'React Hooks',
+      path: '/cheat-sheets/react-hooks',
+      description: 'Quick reference for React Hooks.',
+      icon: <SiReact className="align-middle" />,
+    },
+    {
+      name: 'Java',
+      path: '/cheat-sheets/java',
+      description:
+        'Core Java syntax, data types, control structures, and object-oriented concepts.',
+      icon: <FaJava className="align-middle" />,
+    },
+    {
+      name: 'Spring Boot',
+      path: '/cheat-sheets/spring-boot',
+      description:
+        'Spring Boot annotations, configurations, and best practices',
+      icon: <FaLeaf className="align-middle text-green-600" />,
+    },
+    {
+      name: 'CSS Flexbox & Grid',
+      path: '/cheat-sheets/css-layout',
+      description:
+        'Comprehensive reference for CSS Flexbox and Grid layout properties with visual examples.',
+      icon: <FaCss3Alt className="align-middle" />,
+    },
+    {
+      name: 'Regular Expressions',
+      path: '/cheat-sheets/regex',
+      description:
+        'Quick reference for common Regular Expression syntax, metacharacters, quantifiers, and patterns.',
+      icon: <FaRegFileCode className="align-middle" />,
     },
   ],
 };
