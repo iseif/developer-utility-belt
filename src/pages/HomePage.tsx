@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaInfoCircle, FaRocket, FaStar } from 'react-icons/fa';
+import { FaInfoCircle, FaRocket, FaSearch, FaStar } from 'react-icons/fa';
 import { toolsByCategory } from '../data/toolsData';
 import { useFavoritesContext } from '../hooks/useFavoritesContext';
 import FavoriteButton from '../components/common/FavoriteButton';
+import { useToolsFilter } from '../hooks/useToolsFilter';
 
 const HomePage: React.FC = () => {
   const { favorites, toggleFavorite, isFavorite } = useFavoritesContext();
@@ -15,6 +16,10 @@ const HomePage: React.FC = () => {
   const favoriteTools = allTools.filter((tool) =>
     favorites.includes(tool.path)
   );
+
+  // Use the custom hook for filtering tools
+  const { searchQuery, filteredTools, handleSearchChange, searchResultsKey } =
+    useToolsFilter(allTools);
 
   return (
     <div className="p-4 space-y-8">
@@ -55,6 +60,69 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Search Section */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 dark:text-dark-primary-text">
+          <FaSearch className="inline-block align-middle mr-2" /> Search Tools
+        </h2>
+        <div className="relative max-w-2xl">
+          <input
+            type="text"
+            placeholder="Search for tools by name or description..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="w-full p-3 pr-10 border-2 border-border-color dark:border-dark-border-color rounded bg-primary-bg dark:bg-dark-primary-bg text-primary-text dark:text-dark-primary-text focus:outline-none focus:ring-2 focus:ring-accent"
+          />
+          <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
+        </div>
+
+        {searchQuery.trim() !== '' && (
+          <div
+            key={searchResultsKey}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"
+          >
+            {filteredTools.length > 0 ? (
+              filteredTools.map((tool, index) => (
+                <div
+                  key={`search-${tool.name}-${index}`}
+                  className="relative group h-full"
+                >
+                  <Link
+                    to={tool.path}
+                    className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out h-full flex flex-col"
+                  >
+                    <div className="flex items-start flex-grow">
+                      <div className="text-2xl mr-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-150">
+                        {tool.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold mb-1 text-primary-text dark:text-dark-primary-text">
+                          {tool.name}
+                        </h4>
+                        <p className="text-sm text-primary-text dark:text-dark-primary-text">
+                          {tool.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                  <div className="absolute top-2 right-2">
+                    <FavoriteButton
+                      isFavorite={isFavorite(tool.path)}
+                      onClick={() => toggleFavorite(tool.path)}
+                      className="p-1"
+                    />
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center p-4 text-gray-500 dark:text-gray-400">
+                No tools found matching "{searchQuery}".
+              </div>
+            )}
+          </div>
+        )}
+      </section>
+
       {/* Favorites Section */}
       {favoriteTools.length > 0 && (
         <section className="space-y-4">
@@ -63,8 +131,11 @@ const HomePage: React.FC = () => {
             Your Favorites
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {favoriteTools.map((tool) => (
-              <div key={tool.path} className="relative group h-full">
+            {favoriteTools.map((tool, index) => (
+              <div
+                key={`favorite-${tool.name}-${index}`}
+                className="relative group h-full"
+              >
                 <Link
                   to={tool.path}
                   className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out h-full flex flex-col"
@@ -109,8 +180,11 @@ const HomePage: React.FC = () => {
               {category}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {tools.map((tool) => (
-                <div key={tool.path} className="relative group h-full">
+              {tools.map((tool, index) => (
+                <div
+                  key={`category-${category}-${tool.name}-${index}`}
+                  className="relative group h-full"
+                >
                   <Link
                     to={tool.path}
                     className="block p-4 border-2 border-border-color dark:border-dark-border-color bg-primary-bg dark:bg-dark-primary-bg shadow-solid dark:shadow-dark-solid hover:bg-accent dark:hover:bg-gray-700 hover:text-primary-text dark:hover:text-dark-primary-text transition-colors duration-150 ease-in-out h-full flex flex-col"

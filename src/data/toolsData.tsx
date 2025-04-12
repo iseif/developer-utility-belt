@@ -243,7 +243,7 @@ export const toolsByCategory: Record<string, Tool[]> = {
       icon: <FaFingerprint className="align-middle" />,
     },
   ],
-  'Network & Info': [
+  Network: [
     {
       name: 'IP Address Info',
       path: '/ip-info',
@@ -257,33 +257,6 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Parse and analyze User Agent strings to extract browser and OS information.',
       icon: <FaSearch className="align-middle" />,
-    },
-    {
-      name: 'Network Ports',
-      path: '/network-ports',
-      description:
-        'Reference for common network ports, protocols, and services.',
-      icon: <FaServer className="align-middle" />,
-    },
-    {
-      name: 'HTTP Status Codes',
-      path: '/http-status-codes',
-      description:
-        'Reference for HTTP status codes with descriptions and categories.',
-      icon: <FaServer className="align-middle" />,
-    },
-    {
-      name: 'HTTP Headers',
-      path: '/http-headers',
-      description:
-        'Reference for HTTP request and response headers with descriptions.',
-      icon: <FaServer className="align-middle" />,
-    },
-    {
-      name: 'MIME Type Lookup',
-      path: '/mime-lookup',
-      description: 'Find MIME types for file extensions and vice versa.',
-      icon: <FaFileAlt className="align-middle" />,
     },
   ],
   'Graphics & Design': [
