@@ -473,8 +473,14 @@ const NpmYarnCheatSheetPage: React.FC = () => {
                             </div>
                           )}
                           {cmd.example && (
-                            <div className="mt-2 font-mono text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded text-gray-600 dark:text-gray-400">
-                              Example: {cmd.example}
+                            <div className="mt-2 font-mono text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded">
+                              <div className="flex items-center justify-between">
+                                <div className="overflow-hidden max-w-[calc(100%-30px)]">
+                                  <pre className="text-primary-text dark:text-dark-primary-text whitespace-pre-wrap break-all">
+                                    Example: {cmd.example}
+                                  </pre>
+                                </div>
+                              </div>
                             </div>
                           )}
                         </div>
