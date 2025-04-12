@@ -36,6 +36,7 @@ import {
   FaRegFileCode,
   FaSearch,
   FaServer,
+  FaSlash,
   FaSortAlphaDown,
   FaTable,
   FaTag,
@@ -156,6 +157,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       description:
         'Write and preview Markdown with real-time rendering and GitHub Flavored Markdown support.',
       icon: <FaMarkdown className="align-middle" />,
+    },
+    {
+      name: 'Regex Tester',
+      path: '/regex-tester',
+      description:
+        'Test and debug regular expressions with real-time matching and highlighting.',
+      icon: <FaSlash className="align-middle" />,
     },
   ],
   'Encoding & Conversion': [

@@ -42,6 +42,7 @@ import AsciiTablePage from './pages/AsciiTablePage';
 import HtmlEntitiesPage from './pages/HtmlEntitiesPage';
 import HttpHeadersPage from './pages/HttpHeadersPage';
 import ImageEditorPage from './pages/ImageEditorPage';
+import RegexTesterPage from './pages/RegexTesterPage';
 import CheatSheetsIndexPage from './pages/cheat-sheets/CheatSheetsIndexPage';
 import GitCheatSheetPage from './pages/cheat-sheets/GitCheatSheetPage';
 import BashCheatSheetPage from './pages/cheat-sheets/BashCheatSheetPage';
@@ -102,6 +103,7 @@ const AppRouter: React.FC = () => {
       <Route path="/base-converter" element={<BaseConverterPage />} />
       <Route path="/hex-viewer" element={<HexViewerPage />} />
       <Route path="/mime-lookup" element={<MimeLookupPage />} />
+      <Route path="/regex-tester" element={<RegexTesterPage />} />
       <Route
         path="/box-shadow-generator"
         element={<BoxShadowGeneratorPage />}
