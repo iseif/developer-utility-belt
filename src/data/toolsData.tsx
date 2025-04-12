@@ -259,6 +259,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       icon: <FaSearch className="align-middle" />,
     },
     {
+      name: 'Network Ports',
+      path: '/network-ports',
+      description:
+        'Reference for common network ports, protocols, and services.',
+      icon: <FaServer className="align-middle" />,
+    },
+    {
       name: 'HTTP Status Codes',
       path: '/http-status-codes',
       description:
@@ -343,6 +350,13 @@ export const toolsByCategory: Record<string, Tool[]> = {
       path: '/http-headers',
       description:
         'Reference for HTTP request and response headers with descriptions.',
+      icon: <FaServer className="align-middle" />,
+    },
+    {
+      name: 'Network Ports',
+      path: '/network-ports',
+      description:
+        'Reference for common network ports, protocols, and services.',
       icon: <FaServer className="align-middle" />,
     },
     {

@@ -43,6 +43,7 @@ import HtmlEntitiesPage from './pages/HtmlEntitiesPage';
 import HttpHeadersPage from './pages/HttpHeadersPage';
 import ImageEditorPage from './pages/ImageEditorPage';
 import RegexTesterPage from './pages/RegexTesterPage';
+import NetworkPortsPage from './pages/NetworkPortsPage';
 import CheatSheetsIndexPage from './pages/cheat-sheets/CheatSheetsIndexPage';
 import GitCheatSheetPage from './pages/cheat-sheets/GitCheatSheetPage';
 import BashCheatSheetPage from './pages/cheat-sheets/BashCheatSheetPage';
@@ -98,6 +99,7 @@ const AppRouter: React.FC = () => {
       <Route path="/uuid-generator" element={<UuidGeneratorPage />} />
       <Route path="/http-status-codes" element={<HttpStatusCodesPage />} />
       <Route path="/http-headers" element={<HttpHeadersPage />} />
+      <Route path="/network-ports" element={<NetworkPortsPage />} />
       <Route path="/text-escaper" element={<TextEscaperPage />} />
       <Route path="/slugify" element={<SlugifyPage />} />
       <Route path="/base-converter" element={<BaseConverterPage />} />

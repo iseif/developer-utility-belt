@@ -29,6 +29,7 @@ This application provides a wide range of tools for developers:
 - **Slugify Text:** Convert text into URL-friendly slugs for web applications
 - **Cron Helper:** Build, test, and understand cron expressions with human-readable explanations
 - **Markdown Previewer:** Write and preview Markdown with real-time rendering
+- **Regex Tester:** Test and debug regular expressions with real-time matching and highlighting
 
 ### Encoding & Conversion
 
@@ -58,6 +59,7 @@ This application provides a wide range of tools for developers:
 
 - **IP Address Info:** Get details about your public IP address and geolocation
 - **User Agent Parser:** Parse User Agent strings to extract browser and OS information
+- **Network Ports:** Reference for common network ports, protocols, and services
 - **HTTP Status Codes:** Reference for HTTP status codes with descriptions and categories
 - **HTTP Headers:** Reference for HTTP request and response headers with descriptions
 - **MIME Type Lookup:** Find MIME types for file extensions and vice versa
@@ -66,6 +68,7 @@ This application provides a wide range of tools for developers:
 
 - **HTTP Status Codes:** Reference for HTTP status codes with descriptions and usage
 - **HTTP Headers:** Reference for HTTP request and response headers with descriptions
+- **Network Ports:** Reference for common network ports, protocols, and services
 - **MIME Type Lookup:** Look up MIME types by file extension or search by type
 - **ASCII Table:** Reference table for ASCII character codes with decimal, hex, octal, and binary values
 - **HTML Entities:** Searchable reference for HTML character entities with named and numbered codes
