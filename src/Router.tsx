@@ -41,6 +41,7 @@ import HmacGeneratorPage from './pages/HmacGeneratorPage';
 import AsciiTablePage from './pages/AsciiTablePage';
 import HtmlEntitiesPage from './pages/HtmlEntitiesPage';
 import HttpHeadersPage from './pages/HttpHeadersPage';
+import ImageEditorPage from './pages/ImageEditorPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -93,6 +94,7 @@ const AppRouter: React.FC = () => {
       <Route path="/hmac-generator" element={<HmacGeneratorPage />} />
       <Route path="/ascii-table" element={<AsciiTablePage />} />
       <Route path="/html-entities" element={<HtmlEntitiesPage />} />
+      <Route path="/image-editor" element={<ImageEditorPage />} />
 
       {/* Add routes for other pages here */}
       <Route path="*" element={<NotFoundPage />} />

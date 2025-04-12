@@ -6,6 +6,7 @@ import {
   FaClock,
   FaCode,
   FaCompress,
+  FaCrop,
   FaCube,
   FaDatabase,
   FaEdit,
@@ -300,8 +301,15 @@ export const toolsByCategory: Record<string, Tool[]> = {
       name: 'Layout Generator',
       path: '/layout-generator',
       description:
-        'Visually design and generate CSS code for Flexbox and Grid layouts.',
+        'Generate CSS grid and flexbox layouts with a visual interface.',
       icon: <FaVectorSquare className="align-middle" />,
+    },
+    {
+      name: 'Image Resizer & Cropper',
+      path: '/image-editor',
+      description:
+        'Resize, crop, and transform images with presets and custom dimensions.',
+      icon: <FaCrop className="align-middle" />,
     },
   ],
   Reference: [
