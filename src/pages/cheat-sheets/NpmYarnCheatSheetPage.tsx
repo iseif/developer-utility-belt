@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FaCopy, FaSearch } from 'react-icons/fa';
-import { SiNpm, SiYarn } from 'react-icons/si';
+import { SiNpm } from 'react-icons/si';
+import CheatSheetCategoryIndex from '../../components/cheat-sheets/CheatSheetCategoryIndex';
 
 // Interface for command data
 interface PackageManagerCommand {
@@ -350,8 +351,6 @@ const NpmYarnCheatSheetPage: React.FC = () => {
         <h1 className="text-2xl font-bold border-b-2 border-border-color dark:border-dark-border-color pb-2 mb-4 dark:text-dark-primary-text">
           <span className="flex items-center">
             <SiNpm className="inline-block mr-2" />
-            <span className="mx-1">/</span>
-            <SiYarn className="inline-block mx-2" />
             NPM & Yarn Cheat Sheet
           </span>
         </h1>
@@ -362,6 +361,9 @@ const NpmYarnCheatSheetPage: React.FC = () => {
           clipboard.
         </p>
       </header>
+
+      {/* Category Index */}
+      <CheatSheetCategoryIndex categories={packageManagerCommandsData} />
 
       {/* Search Bar */}
       <div className="mb-6 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
@@ -395,6 +397,7 @@ const NpmYarnCheatSheetPage: React.FC = () => {
           filteredData.map((category) => (
             <section
               key={category.title}
+              id={category.title.replace(/\s+/g, '-').toLowerCase()}
               className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid"
             >
               <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
@@ -410,53 +413,63 @@ const NpmYarnCheatSheetPage: React.FC = () => {
                     >
                       <div className="flex justify-between items-start">
                         <div className="flex-grow">
-                          <div className="font-mono text-sm bg-gray-100 dark:bg-gray-700 p-2 rounded flex justify-between items-center">
-                            <code className="text-primary-text dark:text-dark-primary-text">
-                              {cmd.command}
-                            </code>
-                            <button
-                              onClick={() => handleCopy(cmd.command, commandId)}
-                              className="ml-2 p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                              title="Copy to clipboard"
-                            >
-                              {copyStatus[commandId] ? (
-                                <span className="text-xs">
-                                  {copyStatus[commandId]}
-                                </span>
-                              ) : (
-                                <FaCopy />
-                              )}
-                            </button>
-                          </div>
-                          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                            {cmd.description}
-                          </p>
-                          {cmd.yarnEquivalent && (
-                            <div className="mt-2 font-mono text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded flex justify-between items-center">
-                              <code className="text-primary-text dark:text-dark-primary-text">
-                                <span className="text-blue-600 dark:text-blue-400 mr-2">
-                                  Yarn:
-                                </span>{' '}
-                                {cmd.yarnEquivalent}
-                              </code>
+                          <div className="font-mono text-sm bg-gray-100 dark:bg-gray-700 p-2 rounded">
+                            <div className="flex items-center justify-between">
+                              <div className="overflow-hidden max-w-[calc(100%-30px)]">
+                                <pre className="text-primary-text dark:text-dark-primary-text whitespace-pre-wrap break-all">
+                                  {cmd.command}
+                                </pre>
+                              </div>
                               <button
                                 onClick={() =>
-                                  handleCopy(
-                                    cmd.yarnEquivalent!,
-                                    `${commandId}-yarn`
-                                  )
+                                  handleCopy(cmd.command, commandId)
                                 }
-                                className="ml-2 p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                                className="ml-2 p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex-shrink-0"
                                 title="Copy to clipboard"
                               >
-                                {copyStatus[`${commandId}-yarn`] ? (
+                                {copyStatus[commandId] ? (
                                   <span className="text-xs">
-                                    {copyStatus[`${commandId}-yarn`]}
+                                    {copyStatus[commandId]}
                                   </span>
                                 ) : (
                                   <FaCopy />
                                 )}
                               </button>
+                            </div>
+                          </div>
+                          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                            {cmd.description}
+                          </p>
+                          {cmd.yarnEquivalent && (
+                            <div className="mt-2 font-mono text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded">
+                              <div className="flex items-center justify-between">
+                                <div className="overflow-hidden max-w-[calc(100%-30px)]">
+                                  <pre className="text-primary-text dark:text-dark-primary-text whitespace-pre-wrap break-all">
+                                    <span className="text-blue-600 dark:text-blue-400 mr-2">
+                                      Yarn:
+                                    </span>{' '}
+                                    {cmd.yarnEquivalent}
+                                  </pre>
+                                </div>
+                                <button
+                                  onClick={() =>
+                                    handleCopy(
+                                      cmd.yarnEquivalent!,
+                                      `${commandId}-yarn`
+                                    )
+                                  }
+                                  className="ml-2 p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex-shrink-0"
+                                  title="Copy to clipboard"
+                                >
+                                  {copyStatus[`${commandId}-yarn`] ? (
+                                    <span className="text-xs">
+                                      {copyStatus[`${commandId}-yarn`]}
+                                    </span>
+                                  ) : (
+                                    <FaCopy />
+                                  )}
+                                </button>
+                              </div>
                             </div>
                           )}
                           {cmd.example && (

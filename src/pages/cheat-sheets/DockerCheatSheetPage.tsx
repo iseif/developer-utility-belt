@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FaCopy, FaDocker, FaSearch } from 'react-icons/fa';
+import CheatSheetCategoryIndex from '../../components/cheat-sheets/CheatSheetCategoryIndex';
 
 // Interface for command data
 interface DockerCommand {
@@ -523,6 +524,9 @@ const DockerCheatSheetPage: React.FC = () => {
         </p>
       </header>
 
+      {/* Category Index */}
+      <CheatSheetCategoryIndex categories={dockerCommandsData} />
+
       {/* Search Bar */}
       <div className="mb-6 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
         <div className="flex items-center">
@@ -555,6 +559,7 @@ const DockerCheatSheetPage: React.FC = () => {
           filteredData.map((category) => (
             <section
               key={category.title}
+              id={category.title.replace(/\s+/g, '-').toLowerCase()}
               className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid"
             >
               <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">

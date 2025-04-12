@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FaCopy, FaJava, FaSearch } from 'react-icons/fa';
+import CheatSheetCategoryIndex from '../../components/cheat-sheets/CheatSheetCategoryIndex';
 
 // Interface for example data
 interface JavaExample {
@@ -309,6 +310,9 @@ const JavaCheatSheetPage: React.FC = () => {
         </p>
       </header>
 
+      {/* Category Index */}
+      <CheatSheetCategoryIndex categories={javaExamplesData} />
+
       {/* Search Bar */}
       <div className="mb-6 p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid">
         <div className="flex items-center">
@@ -341,6 +345,7 @@ const JavaCheatSheetPage: React.FC = () => {
           filteredData.map((category) => (
             <section
               key={category.title}
+              id={category.title.replace(/\s+/g, '-').toLowerCase()}
               className="p-4 border-2 border-border-color dark:border-dark-border-color shadow-solid dark:shadow-dark-solid"
             >
               <h3 className="text-lg font-semibold border-b-2 border-border-color dark:border-dark-border-color pb-1 mb-3 dark:text-dark-primary-text">
@@ -356,25 +361,29 @@ const JavaCheatSheetPage: React.FC = () => {
                     >
                       <div className="flex justify-between items-start">
                         <div className="flex-grow">
-                          <div className="font-mono text-sm bg-gray-100 dark:bg-gray-700 p-2 rounded flex justify-between items-center">
-                            <pre className="text-primary-text dark:text-dark-primary-text whitespace-pre-wrap overflow-x-auto">
-                              {example.code}
-                            </pre>
-                            <button
-                              onClick={() =>
-                                handleCopy(example.code, exampleId)
-                              }
-                              className="ml-2 p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex-shrink-0"
-                              title="Copy to clipboard"
-                            >
-                              {copyStatus[exampleId] ? (
-                                <span className="text-xs">
-                                  {copyStatus[exampleId]}
-                                </span>
-                              ) : (
-                                <FaCopy />
-                              )}
-                            </button>
+                          <div className="font-mono text-sm bg-gray-100 dark:bg-gray-700 p-2 rounded">
+                            <div className="flex items-center justify-between">
+                              <div className="overflow-hidden max-w-[calc(100%-30px)]">
+                                <pre className="text-primary-text dark:text-dark-primary-text whitespace-pre-wrap break-all">
+                                  {example.code}
+                                </pre>
+                              </div>
+                              <button
+                                onClick={() =>
+                                  handleCopy(example.code, exampleId)
+                                }
+                                className="ml-2 p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex-shrink-0"
+                                title="Copy to clipboard"
+                              >
+                                {copyStatus[exampleId] ? (
+                                  <span className="text-xs">
+                                    {copyStatus[exampleId]}
+                                  </span>
+                                ) : (
+                                  <FaCopy />
+                                )}
+                              </button>
+                            </div>
                           </div>
                           <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
                             {example.description}
